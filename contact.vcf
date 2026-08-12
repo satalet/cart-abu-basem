@@ -1,13 +1,14 @@
 BEGIN:VCARD
-VERSION:3.0
-N;CHARSET=UTF-8:زربا;محمد;;أبو باسم;
-FN;CHARSET=UTF-8:محمد زربا (أبو باسم)
-ORG;CHARSET=UTF-8:الباسم للتسلايت و الكامرات
-TITLE;CHARSET=UTF-8:فني تركيب وصيانة كاميرات مراقبة وستلايت
-TEL;TYPE=CELL,PREF:+972534829927
-TEL;TYPE=CELL:+972592973116
-TEL;TYPE=WORK:+972521234687
-ADR;TYPE=WORK;CHARSET=UTF-8:;;الرام - ضواحي القدس;القدس;;;
+VERSION:4.0
+N:زربا;محمد;;أبو باسم;
+FN:محمد زربا (أبو باسم)
+ORG:الباسم للستلايت والكاميرات
+TITLE:فني تركيب وصيانة كاميرات مراقبة وستلايت
+TEL;TYPE=cell,voice;VALUE=uri:tel:+972534829927
+TEL;TYPE=cell,voice;VALUE=uri:tel:+972592973116
+TEL;TYPE=work,voice;VALUE=uri:tel:+972521234687
+PHOTO;MEDIATYPE=image/png:https://satalet.github.io/cart-abu-basem/profile.png
+ADR;TYPE=work:;;الرام - ضواحي القدس;القدس;;;
 URL:https://www.facebook.com/satalet/
-NOTE;CHARSET=UTF-8:Future Sat - تركيب وصيانة كاميرات المراقبة والستلايت
+NOTE:الباسم للستلايت والكاميرات - تركيب وصيانة كاميرات المراقبة والستلايت
 END:VCARD
