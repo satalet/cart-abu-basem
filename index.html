@@ -113,12 +113,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            padding: 15px 18px;
+            gap: 10px;
+            padding: 14px 12px;
             border-radius: 14px;
             text-decoration: none;
             font-weight: bold;
-            font-size: 15px;
+            font-size: 14px;
             transition: all 0.2s ease;
         }
         .btn-vcf {
@@ -150,9 +150,8 @@
             grid-template-columns: 1fr 1fr;
             gap: 12px;
         }
-        /* إظهار الأرقام بوضوح تحت الزر */
         .phone-number-display {
-            font-size: 13px;
+            font-size: 12px;
             color: #94a3b8;
             font-weight: normal;
             margin-top: -1px;
@@ -165,7 +164,6 @@
     <div class="card-container">
         <div class="header-bg"></div>
         <div class="profile-img-container">
-            <!-- الصورة المعدلة الرسمية -->
             <img src="profile.png" alt="محمد زربا" class="profile-img">
             <div class="verified-badge">
                 <i class="fa-solid fa-check"></i>
@@ -187,7 +185,23 @@
                     <i class="fa-solid fa-address-card"></i> حفظ الكرت في الهاتف
                 </a>
                 
-                <!-- أزرار الواتساب مع الأرقام -->
+                <!-- أزرار الاتصال المباشر (أولاً) -->
+                <div class="btn-group">
+                    <div class="btn-wrapper">
+                        <a href="tel:0534829927" class="btn btn-call">
+                            <i class="fa-solid fa-phone"></i> اتصال هاتف
+                        </a>
+                        <span class="phone-number-display">053-482-9927</span>
+                    </div>
+                    <div class="btn-wrapper">
+                        <a href="tel:0592973116" class="btn btn-call">
+                            <i class="fa-solid fa-mobile-screen"></i> اتصال جوّال
+                        </a>
+                        <span class="phone-number-display">059-297-3116</span>
+                    </div>
+                </div>
+
+                <!-- أزرار الواتساب (ثانياً) -->
                 <div class="btn-group">
                     <div class="btn-wrapper">
                         <a href="https://wa.me/972534829927" target="_blank" class="btn btn-whatsapp">
@@ -200,22 +214,6 @@
                             <i class="fa-brands fa-whatsapp"></i> واتساب 2
                         </a>
                         <span class="phone-number-display">052-123-4687</span>
-                    </div>
-                </div>
-
-                <!-- أزرار الاتصال مع الأرقام -->
-                <div class="btn-group">
-                    <div class="btn-wrapper">
-                        <a href="tel:0534829927" class="btn btn-call">
-                            <i class="fa-solid fa-phone"></i> اتصل هاتف
-                        </a>
-                        <span class="phone-number-display">053-482-9927</span>
-                    </div>
-                    <div class="btn-wrapper">
-                        <a href="tel:0592973116" class="btn btn-call">
-                            <i class="fa-solid fa-mobile-screen"></i> اتصل جوّال
-                        </a>
-                        <span class="phone-number-display">059-297-3116</span>
                     </div>
                 </div>
 
