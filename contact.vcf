@@ -3,11 +3,10 @@ VERSION:3.0
 N;CHARSET=UTF-8:زربا;محمد;;أبو باسم;
 FN;CHARSET=UTF-8:محمد زربا (أبو باسم)
 TITLE;CHARSET=UTF-8:فني تركيب وصيانة كاميرات مراقبة وستلايت
-TEL;TYPE=CELL,PREF:+972534829927
+TEL;TYPE=CELL:+972534829927
 TEL;TYPE=CELL:+972592973116
 TEL;TYPE=WORK:+972521234687
-X-WA-BIZ-NAME;CHARSET=UTF-8:محمد زربا (أبو باسم)
-EMAIL;TYPE=INTERNET,WORK:satalet@gmail.com
+EMAIL;TYPE=INTERNET;TYPE=WORK:satalet@gmail.com
 ADR;TYPE=WORK;CHARSET=UTF-8:;;الرام - ضواحي القدس;القدس;;;
 URL:https://www.facebook.com/satalet/
 PHOTO;VALUE=URI:https://satalet.github.io/cart-abu-basem/profile.png
