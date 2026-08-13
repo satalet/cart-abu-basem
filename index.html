@@ -3,7 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>محمد زربا (أبو باسم) - الباسم للستلايت والكاميرات</title>
+    <title>الباسم سات - محمد زربا (أبو باسم)</title>
+
+    <!-- Open Graph Meta Tags للفيسبوك وتطبيقات التواصل -->
+    <meta property="og:title" content="الباسم سات | محمد زربا (أبو باسم)" />
+    <meta property="og:description" content="فني تركيب وصيانة كاميرات مراقبة وساتلايت - الرام وضواحي القدس" />
+    <meta property="og:image" content="https://satalet.github.io/cart-abu-basem/profile.png" />
+    <meta property="og:url" content="https://satalet.github.io/cart-abu-basem/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ar_AR" />
+
     <!-- FontAwesome للأيقونات -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -73,19 +82,19 @@
         h1 {
             font-size: 24px;
             color: #f8fafc;
-            margin-bottom: 3px;
+            margin-bottom: 5px;
             font-weight: 800;
         }
-        .company-name {
+        .nickname {
+            color: #cbd5e1;
             font-size: 16px;
-            color: #38bdf8;
-            font-weight: bold;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
         }
         .subtitle {
-            font-size: 14px;
-            color: #cbd5e1;
+            font-size: 15px;
+            color: #38bdf8;
             margin-bottom: 15px;
+            font-weight: 600;
         }
         .location-info {
             font-size: 14px;
@@ -113,12 +122,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            padding: 14px 12px;
+            gap: 12px;
+            padding: 15px 18px;
             border-radius: 14px;
             text-decoration: none;
             font-weight: bold;
-            font-size: 14px;
+            font-size: 15px;
             transition: all 0.2s ease;
         }
         .btn-vcf {
@@ -150,8 +159,9 @@
             grid-template-columns: 1fr 1fr;
             gap: 12px;
         }
+        /* إظهار الأرقام بوضوح تحت الزر */
         .phone-number-display {
-            font-size: 12px;
+            font-size: 13px;
             color: #94a3b8;
             font-weight: normal;
             margin-top: -1px;
@@ -164,15 +174,16 @@
     <div class="card-container">
         <div class="header-bg"></div>
         <div class="profile-img-container">
+            <!-- الصورة المعدلة الرسمية -->
             <img src="profile.png" alt="محمد زربا" class="profile-img">
             <div class="verified-badge">
                 <i class="fa-solid fa-check"></i>
             </div>
         </div>
         <div class="card-body">
-            <h1>محمد زربا (أبو باسم)</h1>
-            <div class="company-name">الباسم للستلايت والكاميرات</div>
-            <div class="subtitle">فني تركيب وصيانة كاميرات مراقبة وستلايت</div>
+            <h1>محمد زربا</h1>
+            <div class="nickname">(أبو باسم)</div>
+            <div class="subtitle">الباسم سات - كاميرات مراقبة وستلايت</div>
             
             <div class="location-info">
                 <i class="fa-solid fa-location-dot" style="color: #ef4444;"></i>
@@ -181,27 +192,11 @@
 
             <div class="action-buttons">
                 <!-- زر حفظ جهة الاتصال الذكي -->
-                <a href="contact.vcf" download="Mohammad_Zorba.vcf" type="text/vcard" class="btn btn-vcf">
+                <a href="contact.vcf" class="btn btn-vcf">
                     <i class="fa-solid fa-address-card"></i> حفظ الكرت في الهاتف
                 </a>
                 
-                <!-- أزرار الاتصال المباشر -->
-                <div class="btn-group">
-                    <div class="btn-wrapper">
-                        <a href="tel:0534829927" class="btn btn-call">
-                            <i class="fa-solid fa-phone"></i> اتصال هاتف
-                        </a>
-                        <span class="phone-number-display">053-482-9927</span>
-                    </div>
-                    <div class="btn-wrapper">
-                        <a href="tel:0592973116" class="btn btn-call">
-                            <i class="fa-solid fa-mobile-screen"></i> اتصال جوّال
-                        </a>
-                        <span class="phone-number-display">059-297-3116</span>
-                    </div>
-                </div>
-
-                <!-- أزرار الواتساب -->
+                <!-- أزرار الواتساب مع الأرقام -->
                 <div class="btn-group">
                     <div class="btn-wrapper">
                         <a href="https://wa.me/972534829927" target="_blank" class="btn btn-whatsapp">
@@ -214,6 +209,22 @@
                             <i class="fa-brands fa-whatsapp"></i> واتساب 2
                         </a>
                         <span class="phone-number-display">052-123-4687</span>
+                    </div>
+                </div>
+
+                <!-- أزرار الاتصال مع الأرقام -->
+                <div class="btn-group">
+                    <div class="btn-wrapper">
+                        <a href="tel:0534829927" class="btn btn-call">
+                            <i class="fa-solid fa-phone"></i> اتصل هاتف
+                        </a>
+                        <span class="phone-number-display">053-482-9927</span>
+                    </div>
+                    <div class="btn-wrapper">
+                        <a href="tel:0592973116" class="btn btn-call">
+                            <i class="fa-solid fa-mobile-screen"></i> اتصل جوّال
+                        </a>
+                        <span class="phone-number-display">059-297-3116</span>
                     </div>
                 </div>
 
