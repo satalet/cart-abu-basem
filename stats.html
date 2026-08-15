@@ -84,7 +84,7 @@
 
         <div class="card">
             <div class="icon">📤</div>
-            <h3>مشاركة الكرت</h3>
+            <h3>مشاركة وحفظ الكرت</h3>
             <div class="number" id="stat-share">0</div>
         </div>
     </div>
@@ -146,23 +146,24 @@
     document.getElementById("year").textContent = new Date().getFullYear();
     const WORKER_ENDPOINT = "https://albasem-stats.satalet.workers.dev";
 
-    function parseHitCount(item) {
-        let count = 0;
+    // دالة استخراج الأرقام الشاملة من أي هيكل بيانات
+    function extractCount(item) {
+        if (!item) return 0;
         if (typeof item.count === 'number' && item.count > 0) return item.count;
         if (typeof item.total === 'number' && item.total > 0) return item.total;
-        
-        if (item.stats && Array.isArray(item.stats)) {
+        if (typeof item.max === 'number' && item.max > 0) return item.max;
+
+        let total = 0;
+        if (Array.isArray(item.stats)) {
             for (const s of item.stats) {
-                if (typeof s.daily === 'number') count += s.daily;
-                if (Array.isArray(s.hourly)) {
-                    count += s.hourly.reduce((a, b) => a + (Number(b) || 0), 0);
+                if (typeof s.daily === 'number') total += s.daily;
+                else if (typeof s.count === 'number') total += s.count;
+                else if (Array.isArray(s.hourly)) {
+                    total += s.hourly.reduce((sum, h) => sum + (Number(h) || 0), 0);
                 }
             }
         }
-        if (count === 0 && typeof item.max === 'number') {
-            count = item.max;
-        }
-        return count;
+        return total;
     }
 
     async function fetchLiveStats() {
@@ -170,56 +171,66 @@
         statusEl.innerText = "جاري التحديث...";
 
         try {
-            const hitsRes = await fetch(`${WORKER_ENDPOINT}/stats/hits?limit=100&daily=true`);
-            const hitsData = await hitsRes.json();
-
-            let calculatedTotal = 0;
-            let wa1 = 0, wa2 = 0;
-            let phone1 = 0, phone2 = 0;
-            let fb = 0, contact = 0, share = 0;
-
-            if (hitsData.hits && Array.isArray(hitsData.hits)) {
-                hitsData.hits.forEach(item => {
-                    const p = (item.path || '').toLowerCase();
-                    const count = parseHitCount(item);
-                    calculatedTotal += count;
-
-                    if (p.includes('whatsapp-1')) {
-                        wa1 += count;
-                    } else if (p.includes('whatsapp-2')) {
-                        wa2 += count;
-                    } else if (p.includes('phone-1')) {
-                        phone1 += count;
-                    } else if (p.includes('phone-2')) {
-                        phone2 += count;
-                    } else if (p.includes('facebook')) {
-                        fb += count;
-                    } else if (p.includes('save-contact') || p.includes('contact')) {
-                        contact += count;
-                    } else if (p.includes('share-card') || p.includes('share')) {
-                        share += count;
-                    }
-                });
+            // 1. جلب المجموع الكلي المباشر من GoatCounter
+            const totalRes = await fetch(`${WORKER_ENDPOINT}/stats/total`);
+            if (totalRes.ok) {
+                const totalJson = await totalRes.json();
+                if (totalJson.total !== undefined) {
+                    document.getElementById('stat-views').innerText = totalJson.total;
+                }
             }
 
+            // 2. جلب تفاصيل النقرات
+            const hitsRes = await fetch(`${WORKER_ENDPOINT}/stats/hits`);
+            const hitsJson = await hitsRes.json();
+
+            console.log("بيانات GoatCounter المستلمة:", hitsJson);
+
+            const list = Array.isArray(hitsJson) ? hitsJson : (hitsJson.hits || []);
+            
+            let wa1 = 0, wa2 = 0;
+            let p1 = 0, p2 = 0;
+            let fb = 0, contact = 0, share = 0;
+            let calculatedSum = 0;
+
+            list.forEach(item => {
+                const rawPath = (item.path || '').toLowerCase();
+                const rawTitle = (item.title || '').toLowerCase();
+                const c = extractCount(item);
+                calculatedSum += c;
+
+                if (rawPath.includes('whatsapp-1') || rawTitle.includes('واتساب 1')) wa1 += c;
+                else if (rawPath.includes('whatsapp-2') || rawTitle.includes('واتساب 2')) wa2 += c;
+                else if (rawPath.includes('phone-1') || rawTitle.includes('اتصل هاتف')) p1 += c;
+                else if (rawPath.includes('phone-2') || rawTitle.includes('اتصل جوّال')) p2 += c;
+                else if (rawPath.includes('facebook') || rawTitle.includes('فيسبوك')) fb += c;
+                else if (rawPath.includes('contact') || rawTitle.includes('حفظ الكرت')) contact += c;
+                else if (rawPath.includes('share') || rawTitle.includes('مشاركة')) share += c;
+            });
+
+            // عرض الأرقام التفصيلية
             document.getElementById('ev-wa1').innerText = wa1;
             document.getElementById('ev-wa2').innerText = wa2;
-            document.getElementById('ev-p1').innerText = phone1;
-            document.getElementById('ev-p2').innerText = phone2;
+            document.getElementById('ev-p1').innerText = p1;
+            document.getElementById('ev-p2').innerText = p2;
             document.getElementById('ev-fb').innerText = fb;
             document.getElementById('ev-contact').innerText = contact;
             document.getElementById('ev-share').innerText = share;
 
-            document.getElementById('stat-views').innerText = calculatedTotal;
+            // تحديث بطاقات الملخص
             document.getElementById('stat-whatsapp').innerText = wa1 + wa2;
-            document.getElementById('stat-phone').innerText = phone1 + phone2;
-            document.getElementById('stat-share').innerText = share;
+            document.getElementById('stat-phone').innerText = p1 + p2;
+            document.getElementById('stat-share').innerText = contact + share;
+
+            if (document.getElementById('stat-views').innerText === '0' && calculatedSum > 0) {
+                document.getElementById('stat-views').innerText = calculatedSum;
+            }
 
             statusEl.innerText = "آخر تحديث: الآن";
 
-        } catch (e) {
-            console.error(e);
-            statusEl.innerText = "خطأ في الاتصال بالسيرفر";
+        } catch (err) {
+            console.error("خطأ:", err);
+            statusEl.innerText = "فشل في جلب البيانات من السيرفر";
         }
     }
 
