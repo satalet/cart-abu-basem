@@ -3,238 +3,813 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الباسم سات - محمد زربا (أبو باسم)</title>
 
-    <!-- Open Graph Meta Tags للفيسبوك وتطبيقات التواصل -->
-    <meta property="og:title" content="الباسم سات | محمد زربا (أبو باسم)" />
-    <meta property="og:description" content="فني تركيب وصيانة كاميرات مراقبة وساتلايت - الرام وضواحي القدس" />
-    <meta property="og:image" content="https://satalet.github.io/cart-abu-basem/poster.jpg" />
-    <meta property="og:url" content="https://satalet.github.io/cart-abu-basem/" />
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content="ar_AR" />
+    <title>الباسم سات | محمد زربا (أبو باسم)</title>
 
-    <!-- FontAwesome للأيقونات -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- =========================
+         معلومات مشاركة الصفحة
+    ========================== -->
+    <meta name="description"
+          content="الباسم سات - محمد زربا (أبو باسم)، فني تركيب وصيانة كاميرات المراقبة والستلايت في الرام وضواحي القدس.">
+
+    <meta name="theme-color" content="#0284c7">
+
+    <!-- Facebook / WhatsApp / Social Preview -->
+    <meta property="og:title"
+          content="الباسم سات | محمد زربا (أبو باسم)">
+
+    <meta property="og:description"
+          content="فني تركيب وصيانة كاميرات المراقبة والستلايت - الرام وضواحي القدس">
+
+    <meta property="og:image"
+          content="https://satalet.github.io/cart-abu-basem/poster.jpg">
+
+    <meta property="og:url"
+          content="https://satalet.github.io/cart-abu-basem/">
+
+    <meta property="og:type"
+          content="website">
+
+    <meta property="og:locale"
+          content="ar_AR">
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title"
+          content="الباسم سات | محمد زربا (أبو باسم)">
+    <meta name="twitter:description"
+          content="تركيب وصيانة كاميرات المراقبة والستلايت - الرام وضواحي القدس">
+    <meta name="twitter:image"
+          content="https://satalet.github.io/cart-abu-basem/poster.jpg">
+
+    <!-- =========================
+         Font Awesome
+    ========================== -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
+
+        /* =========================
+           Reset
+        ========================== */
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
         }
+
+        /* =========================
+           الصفحة
+        ========================== */
+
         body {
-            background-color: #0f172a;
+            background:
+                radial-gradient(circle at top, #172554 0%, #0f172a 45%, #020617 100%);
+
             color: #f8fafc;
+
             display: flex;
             justify-content: center;
             align-items: center;
+
             min-height: 100vh;
+
             padding: 20px 10px;
         }
+
+        /* =========================
+           الكرت
+        ========================== */
+
         .card-container {
-            background: #1e293b;
+            background: rgba(30, 41, 59, 0.96);
+
             width: 100%;
             max-width: 440px;
+
             border-radius: 28px;
+
             overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+
+            box-shadow:
+                0 25px 60px rgba(0, 0, 0, 0.75),
+                0 0 0 1px rgba(255, 255, 255, 0.04);
+
             border: 1px solid #334155;
+
             text-align: center;
+
+            position: relative;
+
+            backdrop-filter: blur(10px);
+        }
+
+        /* =========================
+           الهيدر
+        ========================== */
+
+        .header-bg {
+            background:
+                linear-gradient(
+                    135deg,
+                    #0ea5e9,
+                    #0284c7 50%,
+                    #0369a1
+                );
+
+            height: 135px;
+
+            width: 100%;
+
             position: relative;
         }
-        .header-bg {
-            background: linear-gradient(135deg, #0284c7, #0369a1);
-            height: 130px;
-            width: 100%;
+
+        .header-bg::after {
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                radial-gradient(
+                    circle at 20% 20%,
+                    rgba(255,255,255,0.22),
+                    transparent 35%
+                );
+
+            pointer-events: none;
         }
+
+        /* =========================
+           الصورة الشخصية
+        ========================== */
+
         .profile-img-container {
             position: relative;
-            margin: -65px auto 15px;
-            width: 130px;
-            height: 130px;
+
+            margin: -67px auto 15px;
+
+            width: 134px;
+            height: 134px;
         }
+
         .profile-img {
             width: 100%;
             height: 100%;
+
             border-radius: 50%;
+
             border: 6px solid #1e293b;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+
+            box-shadow:
+                0 10px 25px rgba(0,0,0,0.55),
+                0 0 0 3px rgba(56,189,248,0.15);
+
             object-fit: cover;
+
+            display: block;
         }
+
+        /* =========================
+           علامة التحقق
+        ========================== */
+
         .verified-badge {
             position: absolute;
+
             bottom: 5px;
             right: 5px;
+
             background: #22c55e;
+
             color: white;
+
             border-radius: 50%;
-            width: 28px;
-            height: 28px;
+
+            width: 29px;
+            height: 29px;
+
             display: flex;
+
             align-items: center;
             justify-content: center;
+
             font-size: 14px;
+
             border: 3px solid #1e293b;
+
+            box-shadow: 0 3px 10px rgba(0,0,0,0.35);
         }
+
+        /* =========================
+           جسم الكرت
+        ========================== */
+
         .card-body {
             padding: 0 25px 30px;
         }
+
         h1 {
-            font-size: 24px;
+            font-size: 25px;
+
             color: #f8fafc;
-            margin-bottom: 5px;
+
+            margin-bottom: 4px;
+
             font-weight: 800;
         }
+
         .nickname {
             color: #cbd5e1;
+
             font-size: 16px;
+
             margin-bottom: 8px;
         }
+
         .subtitle {
             font-size: 15px;
+
             color: #38bdf8;
-            margin-bottom: 15px;
-            font-weight: 600;
+
+            margin-bottom: 16px;
+
+            font-weight: 700;
+
+            line-height: 1.6;
         }
+
+        /* =========================
+           الموقع
+        ========================== */
+
         .location-info {
             font-size: 14px;
+
             color: #cbd5e1;
+
             margin-bottom: 22px;
+
             display: flex;
+
             align-items: center;
             justify-content: center;
+
             gap: 8px;
-            background: rgba(51, 65, 85, 0.5);
-            padding: 8px;
-            border-radius: 10px;
+
+            background: rgba(51, 65, 85, 0.55);
+
+            padding: 9px;
+
+            border-radius: 11px;
+
+            border: 1px solid rgba(148,163,184,0.08);
         }
+
+        /* =========================
+           الأزرار
+        ========================== */
+
         .action-buttons {
             display: flex;
+
             flex-direction: column;
-            gap: 12px;
+
+            gap: 13px;
         }
+
         .btn-wrapper {
             display: flex;
+
             flex-direction: column;
-            gap: 2px;
+
+            gap: 4px;
         }
+
         .btn {
             display: flex;
+
             align-items: center;
             justify-content: center;
-            gap: 12px;
+
+            gap: 11px;
+
             padding: 15px 18px;
+
             border-radius: 14px;
+
             text-decoration: none;
-            font-weight: bold;
+
+            font-weight: 700;
+
             font-size: 15px;
-            transition: all 0.2s ease;
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease,
+                opacity 0.2s ease;
+
+            -webkit-tap-highlight-color: transparent;
         }
-        .btn-vcf {
-            background: linear-gradient(135deg, #38bdf8, #0284c7);
-            color: #0f172a;
-            font-size: 16px;
-            padding: 16px;
-            box-shadow: 0 5px 15px rgba(56, 189, 248, 0.4);
-        }
-        .btn-whatsapp {
-            background-color: #22c55e;
-            color: #ffffff;
-        }
-        .btn-call {
-            background-color: #334155;
-            color: #f8fafc;
-            border: 1px solid #475569;
-        }
-        .btn-facebook {
-            background-color: #1877f2;
-            color: #ffffff;
-        }
+
         .btn:hover {
-            opacity: 0.95;
+            opacity: 0.96;
+
             transform: translateY(-3px);
         }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .btn i {
+            font-size: 19px;
+        }
+
+        /* =========================
+           حفظ جهة الاتصال
+        ========================== */
+
+        .btn-vcf {
+            background:
+                linear-gradient(
+                    135deg,
+                    #38bdf8,
+                    #0284c7
+                );
+
+            color: #082f49;
+
+            font-size: 16px;
+
+            padding: 16px;
+
+            box-shadow:
+                0 7px 20px rgba(14,165,233,0.30);
+        }
+
+        /* =========================
+           واتساب
+        ========================== */
+
+        .btn-whatsapp {
+            background:
+                linear-gradient(
+                    135deg,
+                    #25d366,
+                    #16a34a
+                );
+
+            color: #ffffff;
+
+            box-shadow:
+                0 5px 15px rgba(34,197,94,0.18);
+        }
+
+        /* =========================
+           الاتصال
+        ========================== */
+
+        .btn-call {
+            background:
+                linear-gradient(
+                    135deg,
+                    #475569,
+                    #334155
+                );
+
+            color: #f8fafc;
+
+            border: 1px solid #475569;
+        }
+
+        /* =========================
+           فيسبوك
+        ========================== */
+
+        .btn-facebook {
+            background:
+                linear-gradient(
+                    135deg,
+                    #1877f2,
+                    #0d65d9
+                );
+
+            color: #ffffff;
+
+            box-shadow:
+                0 5px 15px rgba(24,119,242,0.20);
+        }
+
+        /* =========================
+           تقسيم الزرين
+        ========================== */
+
         .btn-group {
             display: grid;
+
             grid-template-columns: 1fr 1fr;
+
             gap: 12px;
         }
-        /* إظهار الأرقام بوضوح تحت الزر */
+
+        /* =========================
+           رقم الهاتف أسفل الزر
+        ========================== */
+
         .phone-number-display {
             font-size: 13px;
+
             color: #94a3b8;
-            font-weight: normal;
+
+            font-weight: 500;
+
             margin-top: -1px;
+
             display: block;
+
+            direction: ltr;
         }
+
+        /* =========================
+           زر المشاركة
+        ========================== */
+
+        .share-btn {
+            margin-top: 2px;
+
+            background: rgba(51,65,85,0.65);
+
+            color: #e2e8f0;
+
+            border: 1px solid #475569;
+
+            cursor: pointer;
+
+            width: 100%;
+        }
+
+        .share-btn:hover {
+            background: rgba(71,85,105,0.8);
+        }
+
+        /* =========================
+           الفوتر
+        ========================== */
+
+        .footer {
+            margin-top: 20px;
+
+            font-size: 12px;
+
+            color: #64748b;
+
+            line-height: 1.6;
+        }
+
+        .footer strong {
+            color: #94a3b8;
+        }
+
+        /* =========================
+           شاشات صغيرة
+        ========================== */
+
+        @media (max-width: 380px) {
+
+            .card-body {
+                padding-left: 18px;
+                padding-right: 18px;
+            }
+
+            .btn {
+                font-size: 14px;
+                padding: 14px 10px;
+            }
+
+            .phone-number-display {
+                font-size: 12px;
+            }
+
+            h1 {
+                font-size: 23px;
+            }
+        }
+
     </style>
 </head>
+
 <body>
 
-    <div class="card-container">
+    <main class="card-container">
+
+        <!-- =========================
+             Header
+        ========================== -->
+
         <div class="header-bg"></div>
+
+        <!-- =========================
+             Profile
+        ========================== -->
+
         <div class="profile-img-container">
-            <!-- الصورة الشخصية داخل الكرت -->
-            <img src="profile.png" alt="محمد زربا" class="profile-img">
+
+            <img
+                src="profile.png"
+                alt="محمد زربا - أبو باسم"
+                class="profile-img"
+            >
+
             <div class="verified-badge">
                 <i class="fa-solid fa-check"></i>
             </div>
+
         </div>
+
+        <!-- =========================
+             Body
+        ========================== -->
+
         <div class="card-body">
+
             <h1>محمد زربا</h1>
-            <div class="nickname">(أبو باسم)</div>
-            <div class="subtitle">الباسم سات - كاميرات مراقبة وستلايت</div>
-            
-            <div class="location-info">
-                <i class="fa-solid fa-location-dot" style="color: #ef4444;"></i>
-                <span>الرام - ضواحي القدس</span>
+
+            <div class="nickname">
+                (أبو باسم)
             </div>
+
+            <div class="subtitle">
+                الباسم سات - كاميرات مراقبة وستلايت
+            </div>
+
+            <!-- الموقع -->
+
+            <div class="location-info">
+
+                <i
+                    class="fa-solid fa-location-dot"
+                    style="color:#ef4444;"
+                ></i>
+
+                <span>
+                    الرام - ضواحي القدس
+                </span>
+
+            </div>
+
+            <!-- =========================
+                 Buttons
+            ========================== -->
 
             <div class="action-buttons">
-                <!-- زر حفظ جهة الاتصال الذكي -->
-                <a href="contact.vcf" class="btn btn-vcf">
-                    <i class="fa-solid fa-address-card"></i> حفظ الكرت في الهاتف
+
+                <!-- حفظ جهة الاتصال -->
+
+                <a
+                    href="contact.vcf"
+                    class="btn btn-vcf"
+                    download
+                >
+                    <i class="fa-solid fa-address-card"></i>
+
+                    حفظ الكرت في الهاتف
                 </a>
-                
-                <!-- أزرار الواتساب مع الأرقام -->
+
+
+                <!-- =========================
+                     WhatsApp
+                ========================== -->
+
                 <div class="btn-group">
+
+                    <!-- WhatsApp 1 -->
+
                     <div class="btn-wrapper">
-                        <a href="https://wa.me/972534829927" target="_blank" class="btn btn-whatsapp">
-                            <i class="fa-brands fa-whatsapp"></i> واتساب 1
+
+                        <a
+                            href="https://wa.me/972534829927?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%B4%D8%A7%D9%87%D8%AF%D8%AA%20%D9%83%D8%B1%D8%AA%20%D8%A7%D9%84%D8%A8%D8%A7%D8%B3%D9%85%20%D8%B3%D8%A7%D8%AA%20%D9%88%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%20%D8%AA%D8%B1%D9%83%D9%8A%D8%A8%20%D9%88%D8%B5%D9%8A%D8%A7%D9%86%D8%A9%20%D8%A7%D9%84%D8%B3%D8%AA%D9%84%D8%A7%D9%8A%D8%AA%20%D9%88%D9%83%D8%A7%D9%85%D9%8A%D8%B1%D8%A7%D8%AA%20%D8%A7%D9%84%D9%85%D8%B1%D8%A7%D9%82%D8%A8%D8%A9."
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="btn btn-whatsapp"
+                        >
+
+                            <i class="fa-brands fa-whatsapp"></i>
+
+                            واتساب 1
+
                         </a>
-                        <span class="phone-number-display">053-482-9927</span>
+
+                        <span class="phone-number-display">
+                            053-482-9927
+                        </span>
+
                     </div>
+
+
+                    <!-- WhatsApp 2 -->
+
                     <div class="btn-wrapper">
-                        <a href="https://wa.me/972521234687" target="_blank" class="btn btn-whatsapp">
-                            <i class="fa-brands fa-whatsapp"></i> واتساب 2
+
+                        <a
+                            href="https://wa.me/972521234687?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%B4%D8%A7%D9%87%D8%AF%D8%AA%20%D9%83%D8%B1%D8%AA%20%D8%A7%D9%84%D8%A8%D8%A7%D8%B3%D9%85%20%D8%B3%D8%A7%D8%AA%20%D9%88%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%20%D8%AA%D8%B1%D9%83%D9%8A%D8%A8%20%D9%88%D8%B5%D9%8A%D8%A7%D9%86%D8%A9%20%D8%A7%D9%84%D8%B3%D8%AA%D9%84%D8%A7%D9%8A%D8%AA%20%D9%88%D9%83%D8%A7%D9%85%D9%8A%D8%B1%D8%A7%D8%AA%20%D8%A7%D9%84%D9%85%D8%B1%D8%A7%D9%82%D8%A8%D8%A9."
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="btn btn-whatsapp"
+                        >
+
+                            <i class="fa-brands fa-whatsapp"></i>
+
+                            واتساب 2
+
                         </a>
-                        <span class="phone-number-display">052-123-4687</span>
+
+                        <span class="phone-number-display">
+                            052-123-4687
+                        </span>
+
                     </div>
+
                 </div>
 
-                <!-- أزرار الاتصال مع الأرقام -->
+
+                <!-- =========================
+                     Phone Calls
+                ========================== -->
+
                 <div class="btn-group">
+
+                    <!-- هاتف -->
+
                     <div class="btn-wrapper">
-                        <a href="tel:0534829927" class="btn btn-call">
-                            <i class="fa-solid fa-phone"></i> اتصل هاتف
+
+                        <a
+                            href="tel:+972534829927"
+                            class="btn btn-call"
+                        >
+
+                            <i class="fa-solid fa-phone"></i>
+
+                            اتصل هاتف
+
                         </a>
-                        <span class="phone-number-display">053-482-9927</span>
+
+                        <span class="phone-number-display">
+                            053-482-9927
+                        </span>
+
                     </div>
+
+
+                    <!-- جوّال -->
+
                     <div class="btn-wrapper">
-                        <a href="tel:0592973116" class="btn btn-call">
-                            <i class="fa-solid fa-mobile-screen"></i> اتصل جوّال
+
+                        <a
+                            href="tel:+972592973116"
+                            class="btn btn-call"
+                        >
+
+                            <i class="fa-solid fa-mobile-screen"></i>
+
+                            اتصل جوّال
+
                         </a>
-                        <span class="phone-number-display">059-297-3116</span>
+
+                        <span class="phone-number-display">
+                            059-297-3116
+                        </span>
+
                     </div>
+
                 </div>
 
-                <!-- زر الفيسبوك -->
-                <a href="https://www.facebook.com/satalet/?locale=ar_AR" target="_blank" class="btn btn-facebook">
-                    <i class="fa-brands fa-facebook"></i> صفحة الفيسبوك
+
+                <!-- =========================
+                     Facebook
+                ========================== -->
+
+                <a
+                    href="https://www.facebook.com/satalet/?locale=ar_AR"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn btn-facebook"
+                >
+
+                    <i class="fa-brands fa-facebook"></i>
+
+                    صفحة الفيسبوك
+
                 </a>
+
+
+                <!-- =========================
+                     Share
+                ========================== -->
+
+                <button
+                    type="button"
+                    class="btn share-btn"
+                    onclick="shareCard()"
+                >
+
+                    <i class="fa-solid fa-share-nodes"></i>
+
+                    مشاركة الكرت
+
+                </button>
+
             </div>
+
+
+            <!-- =========================
+                 Footer
+            ========================== -->
+
+            <div class="footer">
+
+                <strong>الباسم سات</strong>
+
+                <br>
+
+                تركيب وصيانة الستلايت وكاميرات المراقبة
+
+            </div>
+
         </div>
-    </div>
+
+    </main>
+
+
+    <!-- =========================
+         JavaScript
+    ========================== -->
+
+    <script>
+
+        async function shareCard() {
+
+            const shareData = {
+
+                title: "الباسم سات | محمد زربا (أبو باسم)",
+
+                text:
+                    "الباسم سات - تركيب وصيانة كاميرات المراقبة والستلايت | الرام وضواحي القدس",
+
+                url:
+                    "https://satalet.github.io/cart-abu-basem/"
+
+            };
+
+
+            /* مشاركة الهاتف الأصلية */
+
+            if (navigator.share) {
+
+                try {
+
+                    await navigator.share(shareData);
+
+                } catch (error) {
+
+                    /* المستخدم أغلق نافذة المشاركة */
+
+                }
+
+            }
+
+            /* إذا لم يدعم الجهاز المشاركة */
+
+            else {
+
+                try {
+
+                    await navigator.clipboard.writeText(
+                        "https://satalet.github.io/cart-abu-basem/"
+                    );
+
+                    alert(
+                        "تم نسخ رابط الكرت 👍\nيمكنك الآن إرساله لأي شخص."
+                    );
+
+                } catch (error) {
+
+                    prompt(
+                        "انسخ رابط الكرت:",
+                        "https://satalet.github.io/cart-abu-basem/"
+                    );
+
+                }
+
+            }
+
+        }
+
+    </script>
 
 </body>
 </html>
