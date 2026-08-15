@@ -1,622 +1,197 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <meta name="robots"
-          content="noindex,nofollow">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
     <title>إحصائيات الباسم سات | أبو باسم</title>
-
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family:
-                "Segoe UI",
-                Tahoma,
-                Arial,
-                sans-serif;
-        }
-
-
-        body {
-
-            min-height: 100vh;
-
-            background:
-                radial-gradient(
-                    circle at top,
-                    #172554 0%,
-                    #0f172a 45%,
-                    #020617 100%
-                );
-
-            color: #f8fafc;
-
-            padding: 20px;
-        }
-
-
-        .container {
-
-            width: 100%;
-
-            max-width: 1100px;
-
-            margin: auto;
-        }
-
-
-        /* =========================
-           Header
-        ========================== */
-
-        .header {
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #0284c7,
-                    #0369a1
-                );
-
-            border-radius: 24px;
-
-            padding: 25px;
-
-            margin-bottom: 20px;
-
-            box-shadow:
-                0 20px 50px rgba(0,0,0,0.45);
-
-            border: 1px solid
-                rgba(255,255,255,0.08);
-        }
-
-
-        .header h1 {
-
-            font-size: 28px;
-
-            margin-bottom: 7px;
-        }
-
-
-        .header p {
-
-            color: #dbeafe;
-
-            font-size: 14px;
-        }
-
-
-        .header .badge {
-
-            display: inline-block;
-
-            margin-top: 14px;
-
-            background:
-                rgba(255,255,255,0.15);
-
-            padding: 7px 13px;
-
-            border-radius: 50px;
-
-            font-size: 12px;
-        }
-
-
-        /* =========================
-           Cards
-        ========================== */
-
-        .cards {
-
-            display: grid;
-
-            grid-template-columns:
-                repeat(4, 1fr);
-
-            gap: 15px;
-
-            margin-bottom: 20px;
-        }
-
-
-        .card {
-
-            background:
-                rgba(30,41,59,0.95);
-
-            border: 1px solid #334155;
-
-            border-radius: 20px;
-
-            padding: 20px;
-
-            box-shadow:
-                0 12px 30px
-                rgba(0,0,0,0.30);
-        }
-
-
-        .card .icon {
-
-            width: 45px;
-
-            height: 45px;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            border-radius: 14px;
-
-            background:
-                rgba(56,189,248,0.12);
-
-            font-size: 22px;
-
-            margin-bottom: 12px;
-        }
-
-
-        .card h3 {
-
-            color: #94a3b8;
-
-            font-size: 13px;
-
-            font-weight: 500;
-
-            margin-bottom: 7px;
-        }
-
-
-        .number {
-
-            font-size: 29px;
-
-            font-weight: 800;
-
-            color: #f8fafc;
-        }
-
-
-        /* =========================
-           Main dashboard
-        ========================== */
-
-        .section {
-
-            background:
-                rgba(30,41,59,0.95);
-
-            border: 1px solid #334155;
-
-            border-radius: 22px;
-
-            padding: 20px;
-
-            margin-bottom: 20px;
-
-            box-shadow:
-                0 12px 30px
-                rgba(0,0,0,0.30);
-        }
-
-
-        .section-title {
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: space-between;
-
-            gap: 10px;
-
-            margin-bottom: 15px;
-        }
-
-
-        .section-title h2 {
-
-            font-size: 19px;
-        }
-
-
-        .section-title span {
-
-            color: #64748b;
-
-            font-size: 12px;
-        }
-
-
-        /* =========================
-           GoatCounter iframe
-        ========================== */
-
-        .dashboard-frame {
-
-            width: 100%;
-
-            height: 720px;
-
-            border: 0;
-
-            border-radius: 15px;
-
-            background: #ffffff;
-        }
-
-
-        /* =========================
-           Quick buttons
-        ========================== */
-
-        .quick-buttons {
-
-            display: grid;
-
-            grid-template-columns:
-                repeat(3, 1fr);
-
-            gap: 12px;
-        }
-
-
-        .quick-button {
-
-            text-decoration: none;
-
-            color: #f8fafc;
-
-            background:
-                #334155;
-
-            border: 1px solid #475569;
-
-            border-radius: 14px;
-
-            padding: 15px;
-
-            text-align: center;
-
-            transition: 0.2s;
-        }
-
-
-        .quick-button:hover {
-
-            transform:
-                translateY(-3px);
-
-            background:
-                #475569;
-        }
-
-
-        /* =========================
-           Footer
-        ========================== */
-
-        .footer {
-
-            text-align: center;
-
-            color: #64748b;
-
-            font-size: 12px;
-
-            padding: 15px;
-        }
-
-
-        /* =========================
-           Mobile
-        ========================== */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: "Segoe UI", Tahoma, Arial, sans-serif; }
+        body { min-height: 100vh; background: radial-gradient(circle at top, #172554 0%, #0f172a 45%, #020617 100%); color: #f8fafc; padding: 20px; }
+        .container { width: 100%; max-width: 1100px; margin: auto; }
+        
+        .header { background: linear-gradient(135deg, #0284c7, #0369a1); border-radius: 24px; padding: 25px; margin-bottom: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.45); border: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+        .header h1 { font-size: 26px; margin-bottom: 5px; }
+        .header p { color: #dbeafe; font-size: 14px; }
+        .header .badge { display: inline-block; background: rgba(255,255,255,0.15); padding: 6px 14px; border-radius: 50px; font-size: 12px; }
+        .refresh-btn { background: #0f172a; color: #38bdf8; border: 1px solid #38bdf8; padding: 8px 18px; border-radius: 12px; cursor: pointer; font-weight: bold; display: flex; align-items: center; gap: 8px; transition: 0.2s; }
+        .refresh-btn:hover { background: #38bdf8; color: #0f172a; }
+
+        .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 20px; }
+        .card { background: rgba(30,41,59,0.95); border: 1px solid #334155; border-radius: 20px; padding: 20px; box-shadow: 0 12px 30px rgba(0,0,0,0.30); }
+        .card .icon { width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 14px; background: rgba(56,189,248,0.12); font-size: 22px; margin-bottom: 12px; }
+        .card h3 { color: #94a3b8; font-size: 13px; font-weight: 500; margin-bottom: 7px; }
+        .number { font-size: 28px; font-weight: 800; color: #f8fafc; }
+
+        .section { background: rgba(30,41,59,0.95); border: 1px solid #334155; border-radius: 22px; padding: 20px; margin-bottom: 20px; box-shadow: 0 12px 30px rgba(0,0,0,0.30); }
+        .section-title { display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; border-bottom: 1px solid #334155; padding-bottom: 10px; }
+        .section-title h2 { font-size: 18px; color: #38bdf8; }
+
+        .item-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #2d3d54; }
+        .item-row:last-child { border-bottom: none; }
+        .item-row span { display: flex; align-items: center; gap: 10px; font-size: 14px; }
+        .badge-count { background: #0f172a; border: 1px solid #38bdf8; color: #38bdf8; padding: 4px 12px; border-radius: 8px; font-weight: bold; font-size: 14px; }
+
+        .quick-buttons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+        .quick-button { text-decoration: none; color: #f8fafc; background: #334155; border: 1px solid #475569; border-radius: 14px; padding: 14px; text-align: center; font-size: 14px; font-weight: 600; transition: 0.2s; }
+        .quick-button:hover { transform: translateY(-3px); background: #475569; }
+
+        .footer { text-align: center; color: #64748b; font-size: 12px; padding: 15px; }
 
         @media (max-width: 800px) {
-
-            .cards {
-
-                grid-template-columns:
-                    repeat(2, 1fr);
-            }
-
-
-            .quick-buttons {
-
-                grid-template-columns:
-                    1fr;
-            }
-
-
-            .dashboard-frame {
-
-                height: 650px;
-            }
-
+            .cards { grid-template-columns: repeat(2, 1fr); }
+            .quick-buttons { grid-template-columns: 1fr; }
         }
-
-
         @media (max-width: 480px) {
-
-            body {
-
-                padding: 10px;
-            }
-
-
-            .header {
-
-                padding: 20px;
-            }
-
-
-            .header h1 {
-
-                font-size: 23px;
-            }
-
-
-            .cards {
-
-                grid-template-columns:
-                    1fr 1fr;
-
-                gap: 10px;
-            }
-
-
-            .card {
-
-                padding: 15px;
-            }
-
-
-            .number {
-
-                font-size: 24px;
-            }
-
-
-            .dashboard-frame {
-
-                height: 600px;
-            }
-
+            .cards { grid-template-columns: 1fr 1fr; gap: 10px; }
+            .card { padding: 15px; }
+            .number { font-size: 22px; }
         }
-
     </style>
-
 </head>
-
-
 <body>
-
 
 <div class="container">
 
-
-    <!-- =========================
-         Header
-    ========================== -->
-
     <header class="header">
-
-        <h1>
-            📊 لوحة إحصائيات الباسم سات
-        </h1>
-
-        <p>
-            محمد زربا — أبو باسم
-        </p>
-
-        <div class="badge">
-            🔒 لوحة الإدارة الخاصة
+        <div>
+            <h1>📊 لوحة إحصائيات الباسم سات</h1>
+            <p>محمد زربا — أبو باسم</p>
+            <div class="badge">🔒 لوحة الإدارة الآمنة</div>
         </div>
-
+        <button class="refresh-btn" onclick="fetchLiveStats()"><i class="fa-solid fa-arrows-rotate"></i> تحديث الأرقام</button>
     </header>
 
-
-    <!-- =========================
-         Summary Cards
-    ========================== -->
-
     <div class="cards">
-
-
         <div class="card">
-
-            <div class="icon">
-                👁️
-            </div>
-
-            <h3>
-                زيارات الكرت
-            </h3>
-
-            <div class="number">
-                —
-            </div>
-
+            <div class="icon">👁️</div>
+            <h3>زيارات الكرت</h3>
+            <div class="number" id="stat-views">...</div>
         </div>
 
-
         <div class="card">
-
-            <div class="icon">
-                🟢
-            </div>
-
-            <h3>
-                ضغطات واتساب
-            </h3>
-
-            <div class="number">
-                —
-            </div>
-
+            <div class="icon">🟢</div>
+            <h3>ضغطات واتساب</h3>
+            <div class="number" id="stat-whatsapp">0</div>
         </div>
 
-
         <div class="card">
-
-            <div class="icon">
-                📞
-            </div>
-
-            <h3>
-                ضغطات الاتصال
-            </h3>
-
-            <div class="number">
-                —
-            </div>
-
+            <div class="icon">📞</div>
+            <h3>ضغطات الاتصال</h3>
+            <div class="number" id="stat-phone">0</div>
         </div>
 
-
         <div class="card">
-
-            <div class="icon">
-                📤
-            </div>
-
-            <h3>
-                مشاركة الكرت
-            </h3>
-
-            <div class="number">
-                —
-            </div>
-
+            <div class="icon">📤</div>
+            <h3>مشاركة الكرت</h3>
+            <div class="number" id="stat-share">0</div>
         </div>
-
-
     </div>
 
-
-    <!-- =========================
-         GoatCounter
-    ========================== -->
-
     <section class="section">
-
         <div class="section-title">
-
-            <h2>
-                📈 الإحصائيات التفصيلية
-            </h2>
-
-            <span>
-                GoatCounter
-            </span>
-
+            <h2>📈 تفاصيل حركة ونشاط الزبائن</h2>
+            <span id="update-status" style="font-size: 12px; color: #94a3b8;">جاري جلب البيانات...</span>
         </div>
 
-
-        <iframe
-            class="dashboard-frame"
-            src="https://albasem-sat.goatcounter.com/"
-            title="إحصائيات الباسم سات"
-            loading="lazy">
-        </iframe>
-
+        <div class="item-row">
+            <span><i class="fa-brands fa-whatsapp" style="color: #22c55e;"></i> واتساب 1 (053-482-9927)</span>
+            <span class="badge-count" id="ev-wa1">0</span>
+        </div>
+        <div class="item-row">
+            <span><i class="fa-brands fa-whatsapp" style="color: #22c55e;"></i> واتساب 2 (052-123-4687)</span>
+            <span class="badge-count" id="ev-wa2">0</span>
+        </div>
+        <div class="item-row">
+            <span><i class="fa-solid fa-phone" style="color: #38bdf8;"></i> اتصال هاتف (053-482-9927)</span>
+            <span class="badge-count" id="ev-p1">0</span>
+        </div>
+        <div class="item-row">
+            <span><i class="fa-solid fa-mobile-screen" style="color: #38bdf8;"></i> اتصال جوال (059-297-3116)</span>
+            <span class="badge-count" id="ev-p2">0</span>
+        </div>
+        <div class="item-row">
+            <span><i class="fa-brands fa-facebook" style="color: #3b82f6;"></i> زيارة صفحة فيسبوك</span>
+            <span class="badge-count" id="ev-fb">0</span>
+        </div>
+        <div class="item-row">
+            <span><i class="fa-solid fa-address-card" style="color: #f59e0b;"></i> حفظ الكرت في الهاتف</span>
+            <span class="badge-count" id="ev-contact">0</span>
+        </div>
+        <div class="item-row">
+            <span><i class="fa-solid fa-share-nodes" style="color: #a855f7;"></i> مشاركة رابط الكرت</span>
+            <span class="badge-count" id="ev-share">0</span>
+        </div>
     </section>
 
-
-    <!-- =========================
-         Quick Links
-    ========================== -->
-
     <section class="section">
-
         <div class="section-title">
-
-            <h2>
-                ⚡ روابط سريعة
-            </h2>
-
+            <h2>⚡ روابط سريعة</h2>
         </div>
-
-
         <div class="quick-buttons">
-
-
-            <a
-                class="quick-button"
-                href="https://satalet.github.io/cart-abu-basem/"
-                target="_blank">
-
-                🌐 فتح الكرت
-
-            </a>
-
-
-            <a
-                class="quick-button"
-                href="https://albasem-sat.goatcounter.com/"
-                target="_blank">
-
-                📊 فتح GoatCounter
-
-            </a>
-
-
-            <a
-                class="quick-button"
-                href="https://satalet.github.io/cart-abu-basem/"
-                target="_blank">
-
-                📱 معاينة نسخة الهاتف
-
-            </a>
-
-
+            <a class="quick-button" href="https://satalet.github.io/cart-abu-basem/" target="_blank">🌐 فتح كرت الباسم سات</a>
+            <a class="quick-button" href="https://mohmmad.goatcounter.com/" target="_blank">📊 فتح حساب GoatCounter</a>
+            <a class="quick-button" href="https://satalet.github.io/cart-abu-basem/" target="_blank">📱 تجربة الكرت من الموبايل</a>
         </div>
-
     </section>
-
 
     <div class="footer">
-
-        الباسم سات ©
-        <span id="year"></span>
-
-        <br>
-
-        لوحة إحصائيات أبو باسم
-
+        الباسم سات © <span id="year"></span> | جميع الحقوق محفوظة
     </div>
-
 
 </div>
 
-
 <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    const WORKER_ENDPOINT = "https://albasem-stats.satalet.workers.dev";
 
-    document.getElementById("year").textContent =
-        new Date().getFullYear();
+    async function fetchLiveStats() {
+        const statusEl = document.getElementById('update-status');
+        statusEl.innerText = "جاري التحديث...";
 
+        try {
+            // 1. جلب إجمالي الزيارات
+            const totalRes = await fetch(`${WORKER_ENDPOINT}/stats/total`);
+            const totalData = await totalRes.json();
+            document.getElementById('stat-views').innerText = totalData.total || 0;
+
+            // 2. جلب تفاصيل التفاعلات والأحداث
+            const hitsRes = await fetch(`${WORKER_ENDPOINT}/stats/hits?limit=100`);
+            const hitsData = await hitsRes.json();
+
+            let waCount = 0;
+            let phoneCount = 0;
+            let shareCount = 0;
+
+            if (hitsData.hits) {
+                hitsData.hits.forEach(item => {
+                    const p = (item.path || '').toLowerCase();
+                    const count = item.count || 0;
+
+                    if (p.includes('whatsapp-1')) { document.getElementById('ev-wa1').innerText = count; waCount += count; }
+                    if (p.includes('whatsapp-2')) { document.getElementById('ev-wa2').innerText = count; waCount += count; }
+                    if (p.includes('phone-1')) { document.getElementById('ev-p1').innerText = count; phoneCount += count; }
+                    if (p.includes('phone-2')) { document.getElementById('ev-p2').innerText = count; phoneCount += count; }
+                    if (p.includes('facebook')) { document.getElementById('ev-fb').innerText = count; }
+                    if (p.includes('save-contact')) { document.getElementById('ev-contact').innerText = count; }
+                    if (p.includes('share-card')) { document.getElementById('ev-share').innerText = count; shareCount += count; }
+                });
+            }
+
+            document.getElementById('stat-whatsapp').innerText = waCount;
+            document.getElementById('stat-phone').innerText = phoneCount;
+            document.getElementById('stat-share').innerText = shareCount;
+            statusEl.innerText = "آخر تحديث: الآن";
+
+        } catch (e) {
+            console.error(e);
+            statusEl.innerText = "خطأ في الاتصال بالسيرفر";
+        }
+    }
+
+    window.onload = fetchLiveStats;
 </script>
 
-
 </body>
-
 </html>
