@@ -66,7 +66,7 @@
     <div class="cards">
         <div class="card">
             <div class="icon">👁️</div>
-            <h3>زيارات الكرت</h3>
+            <h3>إجمالي النشاط</h3>
             <div class="number" id="stat-views">...</div>
         </div>
 
@@ -151,31 +151,48 @@
         statusEl.innerText = "جاري التحديث...";
 
         try {
-            // 1. جلب إجمالي الزيارات
-            const totalRes = await fetch(`${WORKER_ENDPOINT}/stats/total`);
-            const totalData = await totalRes.json();
-            document.getElementById('stat-views').innerText = totalData.total || 0;
+            const startDate = "2026-01-01";
 
-            // 2. جلب تفاصيل التفاعلات والأحداث
-            const hitsRes = await fetch(`${WORKER_ENDPOINT}/stats/hits?limit=100`);
+            // 1. جلب إجمالي النشاط مع تمرير تاريخ البداية
+            const totalRes = await fetch(`${WORKER_ENDPOINT}/stats/total?start=${startDate}`);
+            const totalData = await totalRes.json();
+            if (totalData.total !== undefined) {
+                document.getElementById('stat-views').innerText = totalData.total;
+            }
+
+            // 2. جلب تفاصيل النقرات والزيارات مع تمرير تاريخ البداية
+            const hitsRes = await fetch(`${WORKER_ENDPOINT}/stats/hits?limit=100&start=${startDate}`);
             const hitsData = await hitsRes.json();
 
             let waCount = 0;
             let phoneCount = 0;
             let shareCount = 0;
 
-            if (hitsData.hits) {
+            if (hitsData.hits && Array.isArray(hitsData.hits)) {
                 hitsData.hits.forEach(item => {
                     const p = (item.path || '').toLowerCase();
                     const count = item.count || 0;
 
-                    if (p.includes('whatsapp-1')) { document.getElementById('ev-wa1').innerText = count; waCount += count; }
-                    if (p.includes('whatsapp-2')) { document.getElementById('ev-wa2').innerText = count; waCount += count; }
-                    if (p.includes('phone-1')) { document.getElementById('ev-p1').innerText = count; phoneCount += count; }
-                    if (p.includes('phone-2')) { document.getElementById('ev-p2').innerText = count; phoneCount += count; }
-                    if (p.includes('facebook')) { document.getElementById('ev-fb').innerText = count; }
-                    if (p.includes('save-contact')) { document.getElementById('ev-contact').innerText = count; }
-                    if (p.includes('share-card')) { document.getElementById('ev-share').innerText = count; shareCount += count; }
+                    if (p.includes('whatsapp-1')) {
+                        document.getElementById('ev-wa1').innerText = count;
+                        waCount += count;
+                    } else if (p.includes('whatsapp-2')) {
+                        document.getElementById('ev-wa2').innerText = count;
+                        waCount += count;
+                    } else if (p.includes('phone-1')) {
+                        document.getElementById('ev-p1').innerText = count;
+                        phoneCount += count;
+                    } else if (p.includes('phone-2')) {
+                        document.getElementById('ev-p2').innerText = count;
+                        phoneCount += count;
+                    } else if (p.includes('facebook')) {
+                        document.getElementById('ev-fb').innerText = count;
+                    } else if (p.includes('save-contact')) {
+                        document.getElementById('ev-contact').innerText = count;
+                    } else if (p.includes('share-card') || p.includes('share')) {
+                        document.getElementById('ev-share').innerText = count;
+                        shareCount += count;
+                    }
                 });
             }
 
