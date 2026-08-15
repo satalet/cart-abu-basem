@@ -146,91 +146,33 @@
     document.getElementById("year").textContent = new Date().getFullYear();
     const WORKER_ENDPOINT = "https://albasem-stats.satalet.workers.dev";
 
-    // دالة استخراج الأرقام الشاملة من أي هيكل بيانات
-    function extractCount(item) {
-        if (!item) return 0;
-        if (typeof item.count === 'number' && item.count > 0) return item.count;
-        if (typeof item.total === 'number' && item.total > 0) return item.total;
-        if (typeof item.max === 'number' && item.max > 0) return item.max;
-
-        let total = 0;
-        if (Array.isArray(item.stats)) {
-            for (const s of item.stats) {
-                if (typeof s.daily === 'number') total += s.daily;
-                else if (typeof s.count === 'number') total += s.count;
-                else if (Array.isArray(s.hourly)) {
-                    total += s.hourly.reduce((sum, h) => sum + (Number(h) || 0), 0);
-                }
-            }
-        }
-        return total;
-    }
-
     async function fetchLiveStats() {
         const statusEl = document.getElementById('update-status');
         statusEl.innerText = "جاري التحديث...";
 
         try {
-            // 1. جلب المجموع الكلي المباشر من GoatCounter
-            const totalRes = await fetch(`${WORKER_ENDPOINT}/stats/total`);
-            if (totalRes.ok) {
-                const totalJson = await totalRes.json();
-                if (totalJson.total !== undefined) {
-                    document.getElementById('stat-views').innerText = totalJson.total;
-                }
-            }
+            const res = await fetch(WORKER_ENDPOINT);
+            const data = await res.json();
 
-            // 2. جلب تفاصيل النقرات
-            const hitsRes = await fetch(`${WORKER_ENDPOINT}/stats/hits`);
-            const hitsJson = await hitsRes.json();
+            // تعبئة بطاقات الملخص
+            document.getElementById('stat-views').innerText = data.total_hits || 0;
+            document.getElementById('stat-whatsapp').innerText = (data.whatsapp1 || 0) + (data.whatsapp2 || 0);
+            document.getElementById('stat-phone').innerText = (data.phone1 || 0) + (data.phone2 || 0);
+            document.getElementById('stat-share').innerText = (data.share || 0) + (data.contact || 0);
 
-            console.log("بيانات GoatCounter المستلمة:", hitsJson);
-
-            const list = Array.isArray(hitsJson) ? hitsJson : (hitsJson.hits || []);
-            
-            let wa1 = 0, wa2 = 0;
-            let p1 = 0, p2 = 0;
-            let fb = 0, contact = 0, share = 0;
-            let calculatedSum = 0;
-
-            list.forEach(item => {
-                const rawPath = (item.path || '').toLowerCase();
-                const rawTitle = (item.title || '').toLowerCase();
-                const c = extractCount(item);
-                calculatedSum += c;
-
-                if (rawPath.includes('whatsapp-1') || rawTitle.includes('واتساب 1')) wa1 += c;
-                else if (rawPath.includes('whatsapp-2') || rawTitle.includes('واتساب 2')) wa2 += c;
-                else if (rawPath.includes('phone-1') || rawTitle.includes('اتصل هاتف')) p1 += c;
-                else if (rawPath.includes('phone-2') || rawTitle.includes('اتصل جوّال')) p2 += c;
-                else if (rawPath.includes('facebook') || rawTitle.includes('فيسبوك')) fb += c;
-                else if (rawPath.includes('contact') || rawTitle.includes('حفظ الكرت')) contact += c;
-                else if (rawPath.includes('share') || rawTitle.includes('مشاركة')) share += c;
-            });
-
-            // عرض الأرقام التفصيلية
-            document.getElementById('ev-wa1').innerText = wa1;
-            document.getElementById('ev-wa2').innerText = wa2;
-            document.getElementById('ev-p1').innerText = p1;
-            document.getElementById('ev-p2').innerText = p2;
-            document.getElementById('ev-fb').innerText = fb;
-            document.getElementById('ev-contact').innerText = contact;
-            document.getElementById('ev-share').innerText = share;
-
-            // تحديث بطاقات الملخص
-            document.getElementById('stat-whatsapp').innerText = wa1 + wa2;
-            document.getElementById('stat-phone').innerText = p1 + p2;
-            document.getElementById('stat-share').innerText = contact + share;
-
-            if (document.getElementById('stat-views').innerText === '0' && calculatedSum > 0) {
-                document.getElementById('stat-views').innerText = calculatedSum;
-            }
+            // تعبئة الصفوف التفصيلية
+            document.getElementById('ev-wa1').innerText = data.whatsapp1 || 0;
+            document.getElementById('ev-wa2').innerText = data.whatsapp2 || 0;
+            document.getElementById('ev-p1').innerText = data.phone1 || 0;
+            document.getElementById('ev-p2').innerText = data.phone2 || 0;
+            document.getElementById('ev-fb').innerText = data.facebook || 0;
+            document.getElementById('ev-contact').innerText = data.contact || 0;
+            document.getElementById('ev-share').innerText = data.share || 0;
 
             statusEl.innerText = "آخر تحديث: الآن";
-
-        } catch (err) {
-            console.error("خطأ:", err);
-            statusEl.innerText = "فشل في جلب البيانات من السيرفر";
+        } catch (e) {
+            console.error(e);
+            statusEl.innerText = "خطأ في الاتصال بالسيرفر";
         }
     }
 
