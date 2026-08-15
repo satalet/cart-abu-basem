@@ -147,12 +147,22 @@
     const WORKER_ENDPOINT = "https://albasem-stats.satalet.workers.dev";
 
     function parseHitCount(item) {
-        if (typeof item.count === 'number') return item.count;
+        let count = 0;
+        if (typeof item.count === 'number' && item.count > 0) return item.count;
+        if (typeof item.total === 'number' && item.total > 0) return item.total;
+        
         if (item.stats && Array.isArray(item.stats)) {
-            return item.stats.reduce((sum, dayStat) => sum + (Number(dayStat.daily) || 0), 0);
+            for (const s of item.stats) {
+                if (typeof s.daily === 'number') count += s.daily;
+                if (Array.isArray(s.hourly)) {
+                    count += s.hourly.reduce((a, b) => a + (Number(b) || 0), 0);
+                }
+            }
         }
-        if (item.total) return Number(item.total) || 0;
-        return 0;
+        if (count === 0 && typeof item.max === 'number') {
+            count = item.max;
+        }
+        return count;
     }
 
     async function fetchLiveStats() {
@@ -160,7 +170,7 @@
         statusEl.innerText = "جاري التحديث...";
 
         try {
-            const hitsRes = await fetch(`${WORKER_ENDPOINT}/stats/hits?limit=100`);
+            const hitsRes = await fetch(`${WORKER_ENDPOINT}/stats/hits?limit=100&daily=true`);
             const hitsData = await hitsRes.json();
 
             let calculatedTotal = 0;
@@ -174,15 +184,15 @@
                     const count = parseHitCount(item);
                     calculatedTotal += count;
 
-                    if (p.includes('whatsapp-1') || p === 'whatsapp-1') {
+                    if (p.includes('whatsapp-1')) {
                         wa1 += count;
-                    } else if (p.includes('whatsapp-2') || p === 'whatsapp-2') {
+                    } else if (p.includes('whatsapp-2')) {
                         wa2 += count;
-                    } else if (p.includes('phone-1') || p === 'phone-1') {
+                    } else if (p.includes('phone-1')) {
                         phone1 += count;
-                    } else if (p.includes('phone-2') || p === 'phone-2') {
+                    } else if (p.includes('phone-2')) {
                         phone2 += count;
-                    } else if (p.includes('facebook') || p === 'facebook') {
+                    } else if (p.includes('facebook')) {
                         fb += count;
                     } else if (p.includes('save-contact') || p.includes('contact')) {
                         contact += count;
@@ -192,7 +202,6 @@
                 });
             }
 
-            // تحديث العناصر في الواجهة
             document.getElementById('ev-wa1').innerText = wa1;
             document.getElementById('ev-wa2').innerText = wa2;
             document.getElementById('ev-p1').innerText = phone1;
