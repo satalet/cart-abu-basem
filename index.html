@@ -7,15 +7,6 @@
     <meta name="description" content="الباسم سات - محمد زربا (أبو باسم)، فني تركيب وصيانة كاميرات المراقبة والستلايت في الرام وضواحي القدس.">
     <meta name="theme-color" content="#030712">
 
-    <!-- PWA & Mobile Web App Settings -->
-    <link rel="manifest" href="manifest.json">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="الباسم سات">
-    <link rel="apple-touch-icon" href="images/app-icon.png">
-    <link rel="icon" type="image/png" href="images/app-icon.png">
-
     <!-- Open Graph -->
     <meta property="og:title" content="الباسم سات | محمد زربا (أبو باسم)">
     <meta property="og:description" content="فني تركيب وصيانة كاميرات المراقبة والستلايت - الرام وضواحي القدس">
@@ -368,6 +359,10 @@
             font-size: 0.72rem;
             color: #64748b;
             font-weight: 600;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
         }
 
         .modal-overlay {
@@ -588,7 +583,10 @@
     </button>
 
     <div class="card-footer">
-        الباسم سات © جميع الحقوق محفوظة
+        <span>الباسم سات © جميع الحقوق محفوظة</span>
+        <a href="stats.html" style="color: var(--text-muted); opacity: 0.12; text-decoration: none; font-size: 0.7rem;" title="لوحة الإدارة">
+            <i class="fa-solid fa-lock"></i>
+        </a>
     </div>
 
 </main>
@@ -636,7 +634,9 @@ async function fetchLiveStatus() {
     const text = document.getElementById('statusText');
 
     try {
-        const res = await fetch(`${WORKER_ENDPOINT}?_t=${Date.now()}`, { cache: 'no-store' });
+        const res = await fetch(`${WORKER_ENDPOINT}?_t=${Date.now()}`, {
+            cache: 'no-store'
+        });
         const data = await res.json();
 
         if (data.status === 'busy') {
@@ -651,8 +651,11 @@ async function fetchLiveStatus() {
 
 fetchLiveStatus();
 setInterval(fetchLiveStatus, 4000);
+
 document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'visible') fetchLiveStatus();
+    if (document.visibilityState === 'visible') {
+        fetchLiveStatus();
+    }
 });
 
 function openModal(id) { document.getElementById(id).style.display = 'flex'; }
