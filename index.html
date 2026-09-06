@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>الباسم سات | محمد زربا (أبو باسم)</title>
     <meta name="description" content="الباسم سات - محمد زربا (أبو باسم)، فني تركيب وصيانة كاميرات المراقبة والستلايت في الرام وضواحي القدس.">
     <meta name="theme-color" content="#030712">
@@ -27,13 +27,13 @@
     <style>
         :root {
             --bg-base: #030712;
-            --card-surface: rgba(15, 23, 42, 0.78);
-            --card-border: rgba(56, 189, 248, 0.2);
+            --card-surface: rgba(15, 23, 42, 0.82);
+            --card-border: rgba(56, 189, 248, 0.22);
             --neon-blue: #38bdf8;
             --neon-green: #22c55e;
-            --neon-amber: #f59e0b;
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
+            --text-primary: #ffffff;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
         }
 
         * {
@@ -47,59 +47,40 @@
         body {
             background-color: var(--bg-base);
             background-image: 
-                radial-gradient(circle at 50% 0%, rgba(14, 165, 233, 0.16) 0%, transparent 55%),
-                radial-gradient(circle at 100% 100%, rgba(34, 197, 94, 0.08) 0%, transparent 45%),
-                radial-gradient(circle at 0% 100%, rgba(56, 189, 248, 0.06) 0%, transparent 40%);
+                radial-gradient(circle at 50% 0%, rgba(14, 165, 233, 0.22) 0%, transparent 55%),
+                radial-gradient(circle at 100% 100%, rgba(34, 197, 94, 0.1) 0%, transparent 45%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: center;
-            padding: 24px 14px;
+            align-items: flex-start;
+            padding: 16px 12px 28px;
             color: var(--text-primary);
         }
 
         .card-container {
             width: 100%;
-            max-width: 440px;
+            max-width: 420px;
             background: var(--card-surface);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
             border: 1px solid var(--card-border);
-            border-radius: 32px;
-            padding: 26px 18px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.75), 0 0 30px rgba(56, 189, 248, 0.1);
+            border-radius: 28px;
+            padding: 24px 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(56, 189, 248, 0.08);
             position: relative;
             overflow: hidden;
-        }
-
-        /* لمعة معدنية خفيفة تمر بالخلفية */
-        .card-container::before {
-            content: '';
-            position: absolute;
-            top: -60%;
-            left: -60%;
-            width: 220%;
-            height: 220%;
-            background: linear-gradient(45deg, transparent 46%, rgba(255, 255, 255, 0.035) 50%, transparent 54%);
-            animation: cardShimmer 10s infinite linear;
-            pointer-events: none;
-        }
-
-        @keyframes cardShimmer {
-            0% { transform: translateY(-30%) rotate(25deg); }
-            100% { transform: translateY(30%) rotate(25deg); }
         }
 
         /* بادج الحالة المباشرة */
         .status-badge {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            background: rgba(34, 197, 94, 0.1);
-            border: 1px solid rgba(34, 197, 94, 0.25);
-            padding: 5px 14px;
+            gap: 7px;
+            background: rgba(34, 197, 94, 0.12);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            padding: 5px 12px;
             border-radius: 999px;
-            font-size: 0.78rem;
+            font-size: 0.76rem;
             color: #4ade80;
             font-weight: 700;
             margin-bottom: 16px;
@@ -120,7 +101,7 @@
             100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
         }
 
-        /* الهيدر والبروفايل */
+        /* البروفايل والهيدر */
         .profile-section {
             display: flex;
             flex-direction: column;
@@ -130,8 +111,8 @@
 
         .profile-img-container {
             position: relative;
-            width: 104px;
-            height: 104px;
+            width: 96px;
+            height: 96px;
             margin-bottom: 12px;
         }
 
@@ -140,29 +121,29 @@
             height: 100%;
             border-radius: 50%;
             object-fit: cover;
-            border: 2.5px solid var(--neon-blue);
-            box-shadow: 0 0 25px rgba(56, 189, 248, 0.35);
+            border: 2px solid var(--neon-blue);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.35);
             background: #0f172a;
         }
 
         .verified-badge {
             position: absolute;
-            bottom: 3px;
-            right: 3px;
+            bottom: 2px;
+            right: 2px;
             background: #0284c7;
             color: #fff;
-            width: 24px;
-            height: 24px;
+            width: 22px;
+            height: 22px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.72rem;
+            font-size: 0.68rem;
             border: 2px solid var(--bg-base);
         }
 
         h1 {
-            font-size: 1.48rem;
+            font-size: 1.4rem;
             font-weight: 800;
             color: #ffffff;
             line-height: 1.2;
@@ -172,17 +153,18 @@
             font-size: 0.95rem;
             color: var(--neon-blue);
             font-weight: 700;
-            margin-top: 2px;
+            margin-top: 1px;
         }
 
         .subtitle {
-            font-size: 0.84rem;
+            font-size: 0.82rem;
             color: var(--text-secondary);
             font-weight: 600;
             margin-top: 4px;
+            line-height: 1.4;
         }
 
-        /* زر حفظ الكرت الرئيسي المتوهج */
+        /* زر حفظ الكرت في الهاتف */
         .btn-save-card {
             display: flex;
             align-items: center;
@@ -193,58 +175,57 @@
             color: #ffffff;
             text-decoration: none;
             font-weight: 800;
-            font-size: 0.96rem;
-            padding: 13px 18px;
-            border-radius: 18px;
-            box-shadow: 0 6px 20px rgba(2, 132, 199, 0.35);
-            margin: 20px 0 16px;
-            transition: all 0.25s ease;
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            font-size: 0.94rem;
+            padding: 13px 16px;
+            border-radius: 16px;
+            box-shadow: 0 4px 18px rgba(2, 132, 199, 0.35);
+            margin: 18px 0 14px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: transform 0.15s ease, background 0.2s;
         }
 
-        .btn-save-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 26px rgba(2, 132, 199, 0.5);
-            color: #fff;
+        .btn-save-card:active {
+            transform: scale(0.98);
+            background: #0284c7;
         }
 
-        /* شبكة أزرار التواصل الذكية (Cyber Grid) */
+        /* شبكة الأزرار للموبايل */
         .circle-buttons-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 11px;
-            margin-bottom: 16px;
+            gap: 10px;
+            margin-bottom: 14px;
         }
 
         .circle-btn {
             display: flex;
             align-items: center;
-            gap: 12px;
-            background: rgba(30, 41, 59, 0.65);
-            border: 1px solid rgba(255, 255, 255, 0.07);
-            padding: 11px 13px;
-            border-radius: 18px;
+            gap: 10px;
+            background: rgba(30, 41, 59, 0.75);
+            border: 1px solid rgba(56, 189, 248, 0.16);
+            padding: 10px 10px;
+            border-radius: 16px;
             text-decoration: none;
             color: var(--text-primary);
-            transition: all 0.25s ease;
+            transition: transform 0.15s ease, background 0.2s;
+            min-width: 0;
         }
 
-        .circle-btn:hover, .circle-btn:active {
-            transform: translateY(-2px);
+        .circle-btn:active {
+            transform: scale(0.97);
             background: rgba(30, 41, 59, 0.95);
-            border-color: rgba(56, 189, 248, 0.35);
+            border-color: rgba(56, 189, 248, 0.4);
         }
 
         .icon-circle {
-            width: 40px;
-            height: 40px;
-            border-radius: 14px;
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             flex-shrink: 0;
-            transition: all 0.2s;
         }
 
         .btn-content {
@@ -252,57 +233,66 @@
             flex-direction: column;
             text-align: right;
             overflow: hidden;
+            min-width: 0;
         }
 
         .btn-content span {
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             font-weight: 700;
-            color: #f1f5f9;
+            color: #f8fafc;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .btn-content small {
-            font-size: 0.72rem;
+            font-size: 0.70rem;
             color: var(--text-secondary);
             margin-top: 1px;
             direction: ltr;
             text-align: right;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
-        /* ألوان الأيقونات الفردية */
-        .whatsapp-glow { background: rgba(34, 197, 94, 0.14); color: #22c55e; }
-        .phone-glow { background: rgba(56, 189, 248, 0.14); color: #38bdf8; }
-        .fb-glow { background: rgba(59, 130, 246, 0.14); color: #60a5fa; }
-        .map-glow { background: rgba(245, 158, 11, 0.14); color: #fbbf24; }
+        /* ألوان الأيقونات */
+        .whatsapp-glow { background: rgba(34, 197, 94, 0.16); color: #22c55e; }
+        .phone-glow { background: rgba(56, 189, 248, 0.16); color: #38bdf8; }
+        .fb-glow { background: rgba(59, 130, 246, 0.16); color: #60a5fa; }
+        .map-glow { background: rgba(245, 158, 11, 0.16); color: #fbbf24; }
 
-        /* زر المشاركة السفلي */
+        /* زر المشاركة */
         .btn-share-card {
             width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            background: rgba(30, 41, 59, 0.5);
+            background: rgba(30, 41, 59, 0.45);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 11px;
-            border-radius: 16px;
-            color: var(--text-secondary);
-            font-size: 0.86rem;
+            padding: 10px;
+            border-radius: 14px;
+            color: var(--text-muted);
+            font-size: 0.84rem;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.15s ease;
         }
 
-        .btn-share-card:hover {
-            background: rgba(56, 189, 248, 0.1);
+        .btn-share-card:active {
+            transform: scale(0.98);
             color: var(--neon-blue);
-            border-color: rgba(56, 189, 248, 0.3);
+            background: rgba(56, 189, 248, 0.1);
         }
 
         .card-footer {
             text-align: center;
             margin-top: 16px;
             font-size: 0.72rem;
-            color: rgba(148, 163, 184, 0.5);
+            color: #64748b;
+            font-weight: 600;
         }
     </style>
 </head>
@@ -329,13 +319,13 @@
         <div class="subtitle">الباسم سات | خبير كاميرات المراقبة والستلايت</div>
     </div>
 
-    <!-- زر حفظ الكرت الرئيسي (نفس وسم التتبع) -->
+    <!-- زر حفظ الكرت في الهاتف -->
     <a href="contact.vcf" download class="btn-save-card" data-goatcounter-click="save-contact">
         <i class="fa-solid fa-address-card"></i>
         <span>حفظ الكرت في الهاتف</span>
     </a>
 
-    <!-- شبكة أزرار التواصل (مع الحفاظ الدقيق على data-goatcounter-click والأرقام) -->
+    <!-- شبكة أزرار التواصل للموبايل -->
     <div class="circle-buttons-grid">
         
         <!-- واتساب 1 -->
@@ -388,13 +378,13 @@
             <div class="icon-circle map-glow"><i class="fa-solid fa-location-dot"></i></div>
             <div class="btn-content">
                 <span>موقعنا</span>
-                <small>الرام والقدس</small>
+                <small>الرام وضواحيها</small>
             </div>
         </a>
 
     </div>
 
-    <!-- زر مشاركة الكرت مع التتبع -->
+    <!-- زر مشاركة الكرت -->
     <button type="button" class="btn-share-card" onclick="shareCard()">
         <i class="fa-solid fa-share-nodes"></i>
         <span>مشاركة الكرت</span>
