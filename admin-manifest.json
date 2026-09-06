@@ -2,7 +2,7 @@
   "name": "إدارة وحالة الباسم سات",
   "short_name": "إدارة الباسم",
   "description": "لوحة تحكم وحالة الباسم سات",
-  "start_url": "./stats.html",
+  "start_url": "./stats.html?mode=admin-app",
   "display": "standalone",
   "background_color": "#030712",
   "theme_color": "#030712",
