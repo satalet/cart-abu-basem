@@ -6,12 +6,35 @@
     <meta name="robots" content="noindex,nofollow">
     <title>إحصائيات الباسم سات | أبو باسم</title>
 
-    <!-- PWA & Mobile Web App Settings -->
-    <link rel="manifest" href="manifest.json">
+    <!-- نظام الحماية المشفر (الرمز: 1977) -->
+    <script>
+        const ENCRYPTED_PIN = "MTk3Nw==";
+        
+        function checkAccess() {
+            let isAuthorized = localStorage.getItem("basem_admin_auth");
+            
+            if (isAuthorized !== "true") {
+                let userPin = prompt("أدخل رمز الحماية السري لإدارة اللوحة:");
+                
+                if (userPin && btoa(userPin) === ENCRYPTED_PIN) {
+                    localStorage.setItem("basem_admin_auth", "true");
+                    alert("تم التحقق بنجاح، أهلاً بك يا أبو باسم.");
+                } else {
+                    alert("رمز خطأ! سيتم توجيهك لصفحة الكرت.");
+                    window.location.href = "index.html";
+                    throw new Error("Unauthorized");
+                }
+            }
+        }
+        checkAccess();
+    </script>
+
+    <!-- PWA & Mobile Web App Settings (ربط ملف الإدارة الخاص بك) -->
+    <link rel="manifest" href="admin-manifest.json">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="إحصائيات الباسم">
+    <meta name="apple-mobile-web-app-title" content="إدارة الباسم">
     <link rel="apple-touch-icon" href="images/app-icon.png">
     <link rel="icon" type="image/png" href="images/app-icon.png">
 
@@ -165,7 +188,7 @@
         <div class="quick-buttons">
             <a class="quick-button" href="https://satalet.github.io/cart-abu-basem/" target="_blank">🌐 فتح كرت الباسم سات</a>
             <a class="quick-button" href="https://mohmmad.goatcounter.com/" target="_blank">📊 فتح حساب GoatCounter</a>
-            <a class="quick-button" href="https://satalet.github.io/cart-abu-basem/" target="_blank">📱 تجربة الكرت من الموبايل</a>
+            <a class="quick-button" href="https://satalet.github.io/cart-abu-basem/stats.html" target="_blank">📱 لوحة التحكم الإدارية</a>
         </div>
     </section>
 
