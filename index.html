@@ -7,6 +7,15 @@
     <meta name="description" content="الباسم سات - محمد زربا (أبو باسم)، فني تركيب وصيانة كاميرات المراقبة والستلايت في الرام وضواحي القدس.">
     <meta name="theme-color" content="#030712">
 
+    <!-- PWA & Mobile Web App Settings -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="الباسم سات">
+    <link rel="apple-touch-icon" href="images/app-icon.png">
+    <link rel="icon" type="image/png" href="images/app-icon.png">
+
     <!-- Open Graph -->
     <meta property="og:title" content="الباسم سات | محمد زربا (أبو باسم)">
     <meta property="og:description" content="فني تركيب وصيانة كاميرات المراقبة والستلايت - الرام وضواحي القدس">
@@ -622,16 +631,12 @@
 <script>
 const WORKER_ENDPOINT = "https://albasem-stats.satalet.workers.dev";
 
-// دالة فحص وتحديث الحالة الفورية والدائمة
 async function fetchLiveStatus() {
     const badge = document.getElementById('statusBadge');
     const text = document.getElementById('statusText');
 
     try {
-        // منع الكاش بإضافة التوقيت الحي بالملي ثانية + no-store
-        const res = await fetch(`${WORKER_ENDPOINT}?_t=${Date.now()}`, {
-            cache: 'no-store'
-        });
+        const res = await fetch(`${WORKER_ENDPOINT}?_t=${Date.now()}`, { cache: 'no-store' });
         const data = await res.json();
 
         if (data.status === 'busy') {
@@ -644,17 +649,10 @@ async function fetchLiveStatus() {
     } catch (e) {}
 }
 
-// 1. تشغيل الفحص فور فتح الصفحة
 fetchLiveStatus();
-
-// 2. فحص دوري مستمر كل 4 ثواني (تحديث حي دائم)
 setInterval(fetchLiveStatus, 4000);
-
-// 3. فحص فوري كل ما الزبون يرجع لتبويبة المتصفح أو يفتح الشاشة
 document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'visible') {
-        fetchLiveStatus();
-    }
+    if (document.visibilityState === 'visible') fetchLiveStatus();
 });
 
 function openModal(id) { document.getElementById(id).style.display = 'flex'; }

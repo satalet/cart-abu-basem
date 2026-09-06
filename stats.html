@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex,nofollow">
     <title>إحصائيات الباسم سات | أبو باسم</title>
+
+    <!-- PWA & Mobile Web App Settings -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="إحصائيات الباسم">
+    <link rel="apple-touch-icon" href="images/app-icon.png">
+    <link rel="icon" type="image/png" href="images/app-icon.png">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: "Segoe UI", Tahoma, Arial, sans-serif; }
@@ -18,7 +28,6 @@
         .refresh-btn { background: #0f172a; color: #38bdf8; border: 1px solid #38bdf8; padding: 8px 18px; border-radius: 12px; cursor: pointer; font-weight: bold; display: flex; align-items: center; gap: 8px; transition: 0.2s; }
         .refresh-btn:hover { background: #38bdf8; color: #0f172a; }
 
-        /* سكشن التحكم بالحالة */
         .status-control-section { background: rgba(30,41,59,0.95); border: 1px solid #0284c7; border-radius: 22px; padding: 20px; margin-bottom: 20px; box-shadow: 0 12px 30px rgba(0,0,0,0.30); }
         .status-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
         .status-pill { padding: 6px 14px; border-radius: 999px; font-size: 13px; font-weight: bold; }
@@ -72,7 +81,6 @@
         <button class="refresh-btn" onclick="fetchLiveStats()"><i class="fa-solid fa-arrows-rotate"></i> تحديث الأرقام</button>
     </header>
 
-    <!-- سكشن التحكم بحالة الكرت المباشرة -->
     <div class="status-control-section">
         <div class="status-header">
             <h2>⚡ التحكم في حالة الكرت للزبائن</h2>
@@ -171,7 +179,6 @@
     document.getElementById("year").textContent = new Date().getFullYear();
     const WORKER_ENDPOINT = "https://albasem-stats.satalet.workers.dev";
 
-    // تغيير الحالة المباشرة وإرسالها للسيرفر
     async function setCardStatus(newStatus) {
         const pill = document.getElementById('current-status-pill');
         pill.innerText = "جاري الحفظ...";
@@ -208,13 +215,11 @@
             const res = await fetch(WORKER_ENDPOINT);
             const data = await res.json();
 
-            // تحديث بطاقات الملخص
             document.getElementById('stat-views').innerText = data.total_hits || 0;
             document.getElementById('stat-whatsapp').innerText = (data.whatsapp1 || 0) + (data.whatsapp2 || 0);
             document.getElementById('stat-phone').innerText = (data.phone1 || 0) + (data.phone2 || 0);
             document.getElementById('stat-share').innerText = (data.share || 0) + (data.contact || 0);
 
-            // تحديث التفاصيل
             document.getElementById('ev-wa1').innerText = data.whatsapp1 || 0;
             document.getElementById('ev-wa2').innerText = data.whatsapp2 || 0;
             document.getElementById('ev-p1').innerText = data.phone1 || 0;
@@ -223,7 +228,6 @@
             document.getElementById('ev-contact').innerText = data.contact || 0;
             document.getElementById('ev-share').innerText = data.share || 0;
 
-            // تحديث حالة السويتش في الواجهة
             if (data.status) {
                 renderStatusPill(data.status);
             }
