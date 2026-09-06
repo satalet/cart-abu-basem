@@ -2,19 +2,22 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
-    // تفعيل CORS ليعمل الكرت ولوحة الإحصائيات بأمان
+    // ترويسات منع الكاش كلياً والسماح بالاتصال
     const headers = {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
       "Access-Control-Allow-Headers": "Content-Type",
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+      "Pragma": "no-cache",
+      "Expires": "0"
     };
 
     if (request.method === "OPTIONS") {
       return new Response(null, { headers });
     }
 
-    // 1. استقبال وتخزين الحالة الجديدة عند الضغط من stats.html
+    // 1. استقبال وتخزين الحالة عند الضغط من لوحة stats.html
     const setStatus = url.searchParams.get("set_status");
     if (setStatus) {
       if (env.STATS_KV) {
@@ -23,15 +26,14 @@ export default {
       return new Response(JSON.stringify({ success: true, status: setStatus }), { headers });
     }
 
-    // 2. قراءة الحالة الحالية المحفوظة
+    // 2. قراءة الحالة المحفوظة
     let currentStatus = "online";
     if (env.STATS_KV) {
       const saved = await env.STATS_KV.get("card_status");
       if (saved) currentStatus = saved;
     }
 
-    // 3. جلب الإحصائيات الحقيقية
-    // (إذا عندك منطق جلب من GoatCounter اتركه كما هو وأضف status للـ response)
+    // 3. إرسال البيانات المباشرة
     const statsData = {
       status: currentStatus,
       total_hits: 24,

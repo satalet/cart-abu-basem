@@ -80,7 +80,6 @@
             margin-bottom: 14px;
         }
 
-        /* بادج الحالة المباشرة المربوط بالسيرفر */
         .status-badge {
             display: inline-flex;
             align-items: center;
@@ -90,7 +89,7 @@
             font-size: 0.76rem;
             font-weight: 700;
             user-select: none;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
         }
 
         .status-badge.online {
@@ -100,8 +99,8 @@
         }
 
         .status-badge.busy {
-            background: rgba(245, 158, 11, 0.12);
-            border: 1px solid rgba(245, 158, 11, 0.3);
+            background: rgba(245, 158, 11, 0.15);
+            border: 1px solid rgba(245, 158, 11, 0.4);
             color: #fbbf24;
         }
 
@@ -109,6 +108,7 @@
             width: 8px;
             height: 8px;
             border-radius: 50%;
+            transition: background-color 0.3s ease;
         }
 
         .status-badge.online .pulse-dot {
@@ -208,7 +208,6 @@
             line-height: 1.4;
         }
 
-        /* زر طلب الصيانة الفورية */
         .btn-dispatch {
             display: flex;
             align-items: center;
@@ -230,7 +229,6 @@
 
         .btn-dispatch:active { transform: scale(0.98); background: rgba(56, 189, 248, 0.15); }
 
-        /* زر حفظ الكرت الرئيسي */
         .btn-save-card {
             display: flex;
             align-items: center;
@@ -252,7 +250,6 @@
 
         .btn-save-card:active { transform: scale(0.98); }
 
-        /* شبكة الأزرار */
         .circle-buttons-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -364,7 +361,6 @@
             font-weight: 600;
         }
 
-        /* المودالات */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -444,7 +440,6 @@
             margin-top: 6px;
         }
 
-        /* Toast الإشعار */
         .toast {
             position: fixed;
             bottom: 24px;
@@ -475,13 +470,11 @@
 <main class="card-container">
 
     <div class="top-tools">
-        <!-- بادج الحالة: يُجلب تلقائياً من سيرفر الإحصائيات -->
         <div class="status-badge online" id="statusBadge">
             <span class="pulse-dot"></span>
-            <span id="statusText">جاري التحقق...</span>
+            <span id="statusText">متاح للخدمة والصيانة الآن</span>
         </div>
 
-        <!-- زر الباركود السريع -->
         <button type="button" class="qr-toggle-btn" onclick="openModal('qrModal')" title="عرض QR Code">
             <i class="fa-solid fa-qrcode"></i>
         </button>
@@ -500,19 +493,16 @@
         <div class="subtitle">الباسم سات | خبير كاميرات المراقبة والستلايت</div>
     </div>
 
-    <!-- زر طلب صيانة / معاينة فورية -->
     <button type="button" class="btn-dispatch" onclick="openModal('dispatchModal')">
         <i class="fa-solid fa-bolt"></i>
         <span>طلب صيانة / معاينة فورية</span>
     </button>
 
-    <!-- زر حفظ الكرت الرئيسي في الهاتف -->
     <a href="contact.vcf" download class="btn-save-card" data-goatcounter-click="save-contact">
         <i class="fa-solid fa-address-card"></i>
         <span>حفظ الكرت في الهاتف</span>
     </a>
 
-    <!-- شبكة أزرار التواصل -->
     <div class="circle-buttons-grid">
         
         <!-- واتساب 1 -->
@@ -583,7 +573,6 @@
 
     </div>
 
-    <!-- زر مشاركة الكرت -->
     <button type="button" class="btn-share-card" onclick="shareCard()">
         <i class="fa-solid fa-share-nodes"></i>
         <span>مشاركة الكرت</span>
@@ -595,7 +584,6 @@
 
 </main>
 
-<!-- مودال QR Code -->
 <div class="modal-overlay" id="qrModal" onclick="closeModalOnBg(event, 'qrModal')">
     <div class="modal-box">
         <button class="modal-close" onclick="closeModal('qrModal')"><i class="fa-solid fa-xmark"></i></button>
@@ -605,7 +593,6 @@
     </div>
 </div>
 
-<!-- مودال طلب صيانة / معاينة -->
 <div class="modal-overlay" id="dispatchModal" onclick="closeModalOnBg(event, 'dispatchModal')">
     <div class="modal-box">
         <button class="modal-close" onclick="closeModal('dispatchModal')"><i class="fa-solid fa-xmark"></i></button>
@@ -635,13 +622,16 @@
 <script>
 const WORKER_ENDPOINT = "https://albasem-stats.satalet.workers.dev";
 
-// جلب الحالة المباشرة من السيرفر فوراً
+// دالة فحص وتحديث الحالة الفورية والدائمة
 async function fetchLiveStatus() {
     const badge = document.getElementById('statusBadge');
     const text = document.getElementById('statusText');
 
     try {
-        const res = await fetch(WORKER_ENDPOINT);
+        // منع الكاش بإضافة التوقيت الحي بالملي ثانية + no-store
+        const res = await fetch(`${WORKER_ENDPOINT}?_t=${Date.now()}`, {
+            cache: 'no-store'
+        });
         const data = await res.json();
 
         if (data.status === 'busy') {
@@ -651,11 +641,21 @@ async function fetchLiveStatus() {
             badge.className = "status-badge online";
             text.innerText = "متاح للخدمة والصيانة الآن";
         }
-    } catch (e) {
-        badge.className = "status-badge online";
-        text.innerText = "متاح للخدمة والصيانة الآن";
-    }
+    } catch (e) {}
 }
+
+// 1. تشغيل الفحص فور فتح الصفحة
+fetchLiveStatus();
+
+// 2. فحص دوري مستمر كل 4 ثواني (تحديث حي دائم)
+setInterval(fetchLiveStatus, 4000);
+
+// 3. فحص فوري كل ما الزبون يرجع لتبويبة المتصفح أو يفتح الشاشة
+document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') {
+        fetchLiveStatus();
+    }
+});
 
 function openModal(id) { document.getElementById(id).style.display = 'flex'; }
 function closeModal(id) { document.getElementById(id).style.display = 'none'; }
@@ -701,8 +701,6 @@ async function shareCard() {
         copyText("https://satalet.github.io/cart-abu-basem/");
     }
 }
-
-fetchLiveStatus();
 </script>
 
 </body>
