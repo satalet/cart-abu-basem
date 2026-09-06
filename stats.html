@@ -18,6 +18,14 @@
         .refresh-btn { background: #0f172a; color: #38bdf8; border: 1px solid #38bdf8; padding: 8px 18px; border-radius: 12px; cursor: pointer; font-weight: bold; display: flex; align-items: center; gap: 8px; transition: 0.2s; }
         .refresh-btn:hover { background: #38bdf8; color: #0f172a; }
 
+        /* سكشن التحكم بالحالة */
+        .status-control-section { background: rgba(30,41,59,0.95); border: 1px solid #0284c7; border-radius: 22px; padding: 20px; margin-bottom: 20px; box-shadow: 0 12px 30px rgba(0,0,0,0.30); }
+        .status-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .status-pill { padding: 6px 14px; border-radius: 999px; font-size: 13px; font-weight: bold; }
+        .status-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .btn-status-toggle { border: none; padding: 12px; border-radius: 14px; color: #fff; font-size: 14px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.2s; }
+        .btn-status-toggle:hover { opacity: 0.9; transform: translateY(-2px); }
+
         .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 20px; }
         .card { background: rgba(30,41,59,0.95); border: 1px solid #334155; border-radius: 20px; padding: 20px; box-shadow: 0 12px 30px rgba(0,0,0,0.30); }
         .card .icon { width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 14px; background: rgba(56,189,248,0.12); font-size: 22px; margin-bottom: 12px; }
@@ -47,6 +55,7 @@
             .cards { grid-template-columns: 1fr 1fr; gap: 10px; }
             .card { padding: 15px; }
             .number { font-size: 22px; }
+            .status-actions { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -62,6 +71,22 @@
         </div>
         <button class="refresh-btn" onclick="fetchLiveStats()"><i class="fa-solid fa-arrows-rotate"></i> تحديث الأرقام</button>
     </header>
+
+    <!-- سكشن التحكم بحالة الكرت المباشرة -->
+    <div class="status-control-section">
+        <div class="status-header">
+            <h2>⚡ التحكم في حالة الكرت للزبائن</h2>
+            <span id="current-status-pill" class="status-pill" style="background: rgba(56, 189, 248, 0.2); color: #38bdf8;">جاري الفحص...</span>
+        </div>
+        <div class="status-actions">
+            <button type="button" class="btn-status-toggle" style="background: #16a34a;" onclick="setCardStatus('online')">
+                <i class="fa-solid fa-circle-check"></i> متاح للخدمة الآن (أخضر)
+            </button>
+            <button type="button" class="btn-status-toggle" style="background: #d97706;" onclick="setCardStatus('busy')">
+                <i class="fa-solid fa-person-digging"></i> في مهمة ميدانية (برتقالي)
+            </button>
+        </div>
+    </div>
 
     <div class="cards">
         <div class="card">
@@ -146,6 +171,35 @@
     document.getElementById("year").textContent = new Date().getFullYear();
     const WORKER_ENDPOINT = "https://albasem-stats.satalet.workers.dev";
 
+    // تغيير الحالة المباشرة وإرسالها للسيرفر
+    async function setCardStatus(newStatus) {
+        const pill = document.getElementById('current-status-pill');
+        pill.innerText = "جاري الحفظ...";
+        try {
+            const res = await fetch(`${WORKER_ENDPOINT}?set_status=${newStatus}`);
+            if (res.ok) {
+                renderStatusPill(newStatus);
+            } else {
+                pill.innerText = "فشل الحفظ!";
+            }
+        } catch (e) {
+            pill.innerText = "خطأ في الاتصال!";
+        }
+    }
+
+    function renderStatusPill(status) {
+        const pill = document.getElementById('current-status-pill');
+        if (status === 'busy') {
+            pill.style.background = "rgba(245, 158, 11, 0.2)";
+            pill.style.color = "#fbbf24";
+            pill.innerText = "الحالة الآن: في مهمة ميدانية 🟠";
+        } else {
+            pill.style.background = "rgba(34, 197, 94, 0.2)";
+            pill.style.color = "#4ade80";
+            pill.innerText = "الحالة الآن: متاح للخدمة 🟢";
+        }
+    }
+
     async function fetchLiveStats() {
         const statusEl = document.getElementById('update-status');
         statusEl.innerText = "جاري التحديث...";
@@ -154,13 +208,13 @@
             const res = await fetch(WORKER_ENDPOINT);
             const data = await res.json();
 
-            // تعبئة بطاقات الملخص
+            // تحديث بطاقات الملخص
             document.getElementById('stat-views').innerText = data.total_hits || 0;
             document.getElementById('stat-whatsapp').innerText = (data.whatsapp1 || 0) + (data.whatsapp2 || 0);
             document.getElementById('stat-phone').innerText = (data.phone1 || 0) + (data.phone2 || 0);
             document.getElementById('stat-share').innerText = (data.share || 0) + (data.contact || 0);
 
-            // تعبئة الصفوف التفصيلية
+            // تحديث التفاصيل
             document.getElementById('ev-wa1').innerText = data.whatsapp1 || 0;
             document.getElementById('ev-wa2').innerText = data.whatsapp2 || 0;
             document.getElementById('ev-p1').innerText = data.phone1 || 0;
@@ -168,6 +222,11 @@
             document.getElementById('ev-fb').innerText = data.facebook || 0;
             document.getElementById('ev-contact').innerText = data.contact || 0;
             document.getElementById('ev-share').innerText = data.share || 0;
+
+            // تحديث حالة السويتش في الواجهة
+            if (data.status) {
+                renderStatusPill(data.status);
+            }
 
             statusEl.innerText = "آخر تحديث: الآن";
         } catch (e) {
