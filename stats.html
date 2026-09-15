@@ -5,38 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex,nofollow">
     <title>إحصائيات الباسم سات | أبو باسم</title>
-
-    <!-- نظام الحماية المشفر (الرمز: 1977) -->
-    <script>
-        const ENCRYPTED_PIN = "MTk3Nw==";
-        
-        function checkAccess() {
-            let isAuthorized = localStorage.getItem("basem_admin_auth");
-            
-            if (isAuthorized !== "true") {
-                let userPin = prompt("أدخل رمز الحماية السري لإدارة اللوحة:");
-                
-                if (userPin && btoa(userPin) === ENCRYPTED_PIN) {
-                    localStorage.setItem("basem_admin_auth", "true");
-                    alert("تم التحقق بنجاح، أهلاً بك يا أبو باسم.");
-                } else {
-                    alert("رمز خطأ! سيتم توجيهك لصفحة الكرت.");
-                    window.location.href = "index.html";
-                    throw new Error("Unauthorized");
-                }
-            }
-        }
-        checkAccess();
-    </script>
-
-    <!-- PWA & Mobile Web App Settings (ربط ملف الإدارة الخاص بك) -->
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="إدارة الباسم">
-    <link rel="apple-touch-icon" href="images/app-icon.png">
-    <link rel="icon" type="image/png" href="images/app-icon.png">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: "Segoe UI", Tahoma, Arial, sans-serif; }
@@ -50,12 +18,7 @@
         .refresh-btn { background: #0f172a; color: #38bdf8; border: 1px solid #38bdf8; padding: 8px 18px; border-radius: 12px; cursor: pointer; font-weight: bold; display: flex; align-items: center; gap: 8px; transition: 0.2s; }
         .refresh-btn:hover { background: #38bdf8; color: #0f172a; }
 
-        .status-control-section { background: rgba(30,41,59,0.95); border: 1px solid #0284c7; border-radius: 22px; padding: 20px; margin-bottom: 20px; box-shadow: 0 12px 30px rgba(0,0,0,0.30); }
-        .status-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-        .status-pill { padding: 6px 14px; border-radius: 999px; font-size: 13px; font-weight: bold; }
-        .status-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .btn-status-toggle { border: none; padding: 12px; border-radius: 14px; color: #fff; font-size: 14px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.2s; }
-        .btn-status-toggle:hover { opacity: 0.9; transform: translateY(-2px); }
+        .status-pill { font-size: 13px; font-weight: bold; padding: 5px 14px; border-radius: 20px; border: 1px solid transparent; }
 
         .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 20px; }
         .card { background: rgba(30,41,59,0.95); border: 1px solid #334155; border-radius: 20px; padding: 20px; box-shadow: 0 12px 30px rgba(0,0,0,0.30); }
@@ -64,8 +27,13 @@
         .number { font-size: 28px; font-weight: 800; color: #f8fafc; }
 
         .section { background: rgba(30,41,59,0.95); border: 1px solid #334155; border-radius: 22px; padding: 20px; margin-bottom: 20px; box-shadow: 0 12px 30px rgba(0,0,0,0.30); }
-        .section-title { display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; border-bottom: 1px solid #334155; padding-bottom: 10px; }
+        .section-title { display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; border-bottom: 1px solid #334155; padding-bottom: 10px; flex-wrap: wrap; gap: 10px; }
         .section-title h2 { font-size: 18px; color: #38bdf8; }
+
+        .btn-status-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        .btn-status-toggle { border: none; border-radius: 14px; padding: 14px; font-size: 15px; font-weight: bold; color: #fff; cursor: pointer; transition: 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .btn-status-toggle:hover { opacity: 0.9; transform: translateY(-2px); }
+        .btn-status-toggle:active { transform: scale(0.98); }
 
         .item-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #2d3d54; }
         .item-row:last-child { border-bottom: none; }
@@ -86,7 +54,7 @@
             .cards { grid-template-columns: 1fr 1fr; gap: 10px; }
             .card { padding: 15px; }
             .number { font-size: 22px; }
-            .status-actions { grid-template-columns: 1fr; }
+            .btn-status-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -103,20 +71,21 @@
         <button class="refresh-btn" onclick="fetchLiveStats()"><i class="fa-solid fa-arrows-rotate"></i> تحديث الأرقام</button>
     </header>
 
-    <div class="status-control-section">
-        <div class="status-header">
+    <!-- قسم التحكم المباشر بالحالة -->
+    <section class="section">
+        <div class="section-title">
             <h2>⚡ التحكم في حالة الكرت للزبائن</h2>
-            <span id="current-status-pill" class="status-pill" style="background: rgba(56, 189, 248, 0.2); color: #38bdf8;">جاري الفحص...</span>
+            <span id="current-status-pill" class="status-pill" style="background: rgba(30,41,59,0.8); color: #94a3b8;">جاري فحص الحالة...</span>
         </div>
-        <div class="status-actions">
-            <button type="button" class="btn-status-toggle" style="background: #16a34a;" onclick="setCardStatus('online')">
-                <i class="fa-solid fa-circle-check"></i> متاح للخدمة الآن (أخضر)
+        <div class="btn-status-grid">
+            <button type="button" class="btn-status-toggle" style="background: #15803d; border: 1px solid #22c55e;" onclick="setCardStatus('online')">
+                🟢 متاح للخدمة الآن (أخضر)
             </button>
-            <button type="button" class="btn-status-toggle" style="background: #d97706;" onclick="setCardStatus('busy')">
-                <i class="fa-solid fa-person-digging"></i> غير متاح حاليا (برتقالي)
+            <button type="button" class="btn-status-toggle" style="background: #d97706; border: 1px solid #f59e0b;" onclick="setCardStatus('busy')">
+                🟠 غير متاح حالياً (برتقالي)
             </button>
         </div>
-    </div>
+    </section>
 
     <div class="cards">
         <div class="card">
@@ -187,7 +156,7 @@
         <div class="quick-buttons">
             <a class="quick-button" href="https://satalet.github.io/cart-abu-basem/" target="_blank">🌐 فتح كرت الباسم سات</a>
             <a class="quick-button" href="https://mohmmad.goatcounter.com/" target="_blank">📊 فتح حساب GoatCounter</a>
-            <a class="quick-button" href="https://satalet.github.io/cart-abu-basem/stats.html" target="_blank">📱 لوحة التحكم الإدارية</a>
+            <a class="quick-button" href="https://satalet.github.io/cart-abu-basem/" target="_blank">📱 تجربة الكرت من الموبايل</a>
         </div>
     </section>
 
@@ -201,31 +170,30 @@
     document.getElementById("year").textContent = new Date().getFullYear();
     const WORKER_ENDPOINT = "https://albasem-stats.satalet.workers.dev";
 
-    async function setCardStatus(newStatus) {
-        const pill = document.getElementById('current-status-pill');
-        pill.innerText = "جاري الحفظ...";
-        try {
-            const res = await fetch(`${WORKER_ENDPOINT}?set_status=${newStatus}`);
-            if (res.ok) {
-                renderStatusPill(newStatus);
-            } else {
-                pill.innerText = "فشل الحفظ!";
-            }
-        } catch (e) {
-            pill.innerText = "خطأ في الاتصال!";
-        }
-    }
-
-    function renderStatusPill(status) {
+    function updateStatusUI(status) {
         const pill = document.getElementById('current-status-pill');
         if (status === 'busy') {
             pill.style.background = "rgba(245, 158, 11, 0.2)";
+            pill.style.borderColor = "rgba(245, 158, 11, 0.4)";
             pill.style.color = "#fbbf24";
-            pill.innerText = "الحالة الآن: غير متاج حاليا 🟠";
+            pill.innerText = "الحالة الآن: غير متاح حالياً 🟠";
         } else {
             pill.style.background = "rgba(34, 197, 94, 0.2)";
+            pill.style.borderColor = "rgba(34, 197, 94, 0.4)";
             pill.style.color = "#4ade80";
             pill.innerText = "الحالة الآن: متاح للخدمة 🟢";
+        }
+    }
+
+    async function setCardStatus(status) {
+        const pill = document.getElementById('current-status-pill');
+        pill.innerText = "جاري الحفظ...";
+        try {
+            await fetch(`${WORKER_ENDPOINT}?set_status=${status}&_t=${Date.now()}`);
+            updateStatusUI(status);
+        } catch (e) {
+            alert("تعذر تحديث الحالة، تأكد من الاتصال بالسيرفر");
+            fetchLiveStats();
         }
     }
 
@@ -234,14 +202,19 @@
         statusEl.innerText = "جاري التحديث...";
 
         try {
-            const res = await fetch(WORKER_ENDPOINT);
+            const res = await fetch(`${WORKER_ENDPOINT}?_t=${Date.now()}`, { cache: 'no-store' });
             const data = await res.json();
 
+            // تحديث بادج الحالة
+            updateStatusUI(data.status || 'online');
+
+            // تعبئة بطاقات الملخص
             document.getElementById('stat-views').innerText = data.total_hits || 0;
             document.getElementById('stat-whatsapp').innerText = (data.whatsapp1 || 0) + (data.whatsapp2 || 0);
             document.getElementById('stat-phone').innerText = (data.phone1 || 0) + (data.phone2 || 0);
             document.getElementById('stat-share').innerText = (data.share || 0) + (data.contact || 0);
 
+            // تعبئة الصفوف التفصيلية
             document.getElementById('ev-wa1').innerText = data.whatsapp1 || 0;
             document.getElementById('ev-wa2').innerText = data.whatsapp2 || 0;
             document.getElementById('ev-p1').innerText = data.phone1 || 0;
@@ -249,10 +222,6 @@
             document.getElementById('ev-fb').innerText = data.facebook || 0;
             document.getElementById('ev-contact').innerText = data.contact || 0;
             document.getElementById('ev-share').innerText = data.share || 0;
-
-            if (data.status) {
-                renderStatusPill(data.status);
-            }
 
             statusEl.innerText = "آخر تحديث: الآن";
         } catch (e) {
