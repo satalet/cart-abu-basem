@@ -246,21 +246,20 @@
             padding: 12px 16px;
             border-radius: 16px;
             box-shadow: 0 4px 18px rgba(2, 132, 199, 0.35);
-            margin-bottom: 16px;
+            margin-bottom: 14px;
             border: 1px solid rgba(255, 255, 255, 0.15);
             transition: transform 0.15s ease;
         }
 
         .btn-save-card:active { transform: scale(0.98); }
 
-        /* الكرت الرئيسي المتكامل للرقم الأساسي */
+        /* الكرت الرئيسي المتناسق */
         .master-contact-card {
-            background: rgba(30, 41, 59, 0.85);
-            border: 1px solid rgba(56, 189, 248, 0.3);
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(56, 189, 248, 0.25);
             border-radius: 18px;
-            padding: 14px 16px;
+            padding: 12px 14px;
             margin-bottom: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.25);
         }
 
         .master-header {
@@ -268,12 +267,17 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 10px;
+            gap: 8px;
         }
 
         .master-title {
+            display: flex;
+            align-items: center;
+            gap: 6px;
             font-size: 0.82rem;
-            color: var(--text-muted);
+            color: #94a3b8;
             font-weight: 700;
+            white-space: nowrap;
         }
 
         .master-phone {
@@ -282,6 +286,7 @@
             color: #38bdf8;
             direction: ltr;
             letter-spacing: 0.5px;
+            white-space: nowrap;
         }
 
         .master-actions {
@@ -296,23 +301,24 @@
             justify-content: center;
             gap: 8px;
             padding: 10px;
-            border-radius: 13px;
+            border-radius: 12px;
             text-decoration: none;
             font-size: 0.88rem;
-            font-weight: 700;
+            font-weight: 800;
+            white-space: nowrap;
             transition: transform 0.15s ease;
         }
 
         .master-btn:active { transform: scale(0.97); }
 
         .btn-wa-master {
-            background: rgba(34, 197, 94, 0.16);
+            background: rgba(34, 197, 94, 0.15);
             border: 1px solid rgba(34, 197, 94, 0.4);
             color: #4ade80;
         }
 
         .btn-call-master {
-            background: rgba(56, 189, 248, 0.16);
+            background: rgba(56, 189, 248, 0.15);
             border: 1px solid rgba(56, 189, 248, 0.4);
             color: #38bdf8;
         }
@@ -328,26 +334,27 @@
         .grid-btn {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 9px;
             background: rgba(30, 41, 59, 0.75);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 11px 12px;
+            padding: 10px 9px;
             border-radius: 16px;
             text-decoration: none;
             color: var(--text-primary);
+            min-width: 0;
             transition: transform 0.15s ease;
         }
 
         .grid-btn:active { transform: scale(0.97); }
 
         .icon-box {
-            width: 38px;
-            height: 38px;
-            border-radius: 12px;
+            width: 36px;
+            height: 36px;
+            border-radius: 11px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             flex-shrink: 0;
         }
 
@@ -356,23 +363,28 @@
             flex-direction: column;
             text-align: right;
             overflow: hidden;
+            min-width: 0;
         }
 
         .grid-content span {
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             font-weight: 700;
             color: #f8fafc;
             white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .grid-content small {
-            font-size: 0.72rem;
+            font-size: 0.7rem;
             color: var(--text-secondary);
             margin-top: 1px;
             direction: ltr;
             text-align: right;
             font-weight: 600;
             white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .whatsapp-theme { background: rgba(34, 197, 94, 0.16); color: #22c55e; }
@@ -410,7 +422,6 @@
             gap: 8px;
         }
 
-        /* المودال */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -530,37 +541,40 @@
         <span>حفظ الكرت في الهاتف</span>
     </a>
 
-    <!-- الخط الرئيسي: سلكوم (واتساب + اتصال مدمجين) -->
+    <!-- الكرت الرئيسي: سلكوم متناسق وموزون -->
     <div class="master-contact-card">
         <div class="master-header">
-            <span class="master-title"><i class="fa-solid fa-star" style="color: #f59e0b; font-size: 0.75rem;"></i> الخط الرئيسي المباشر (سلكوم)</span>
+            <span class="master-title">
+                <i class="fa-solid fa-star" style="color: #f59e0b; font-size: 0.75rem;"></i>
+                الخط الرئيسي (سلكوم)
+            </span>
             <span class="master-phone">053-482-9927</span>
         </div>
         <div class="master-actions">
             <a href="https://wa.me/972534829927?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%B4%D8%A7%D9%87%D8%AA%20%D9%83%D8%B1%D8%AA%20%D8%A7%D9%84%D8%A8%D8%A7%D8%B3%D9%85%20%D8%B3%D8%A7%D8%AA%20%D9%88%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1." target="_blank" class="master-btn btn-wa-master" data-goatcounter-click="whatsapp-1">
                 <i class="fa-brands fa-whatsapp"></i>
-                <span>محادثة واتساب</span>
+                <span>واتساب</span>
             </a>
             <a href="tel:+972534829927" class="master-btn btn-call-master" data-goatcounter-click="phone-1">
                 <i class="fa-solid fa-phone"></i>
-                <span>اتصال هاتف</span>
+                <span>اتصال</span>
             </a>
         </div>
     </div>
 
-    <!-- شبكة التواصل الإضافية (واتساب 2 + اتصال جوال) -->
+    <!-- شبكة التواصل الإضافية -->
     <div class="contacts-grid">
         
-        <!-- واتساب 2 فقط -->
+        <!-- واتساب 2 -->
         <a href="https://wa.me/972521234687?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%B4%D8%A7%D9%87%D8%AA%20%D9%83%D8%B1%D8%AA%20%D8%A7%D9%84%D8%A8%D8%A7%D8%B3%D9%85%20%D8%B3%D8%A7%D8%AA%20%D9%88%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1." target="_blank" class="grid-btn" data-goatcounter-click="whatsapp-2">
             <div class="icon-box whatsapp-theme"><i class="fa-brands fa-whatsapp"></i></div>
             <div class="grid-content">
-                <span>واتساب إضافي</span>
+                <span>واتساب 2</span>
                 <small>052-123-4687</small>
             </div>
         </a>
 
-        <!-- اتصال جوال فقط -->
+        <!-- اتصال جوال -->
         <a href="tel:+972592973116" class="grid-btn" data-goatcounter-click="phone-2">
             <div class="icon-box jawwal-theme"><i class="fa-solid fa-mobile-screen"></i></div>
             <div class="grid-content">
@@ -573,16 +587,16 @@
         <a href="https://www.facebook.com/satalet/?locale=ar_AR" target="_blank" class="grid-btn" data-goatcounter-click="facebook">
             <div class="icon-box fb-theme"><i class="fa-brands fa-facebook-f"></i></div>
             <div class="grid-content">
-                <span>صفحة فيسبوك</span>
+                <span>فيسبوك</span>
                 <small>الباسم سات</small>
             </div>
         </a>
 
-        <!-- الموقع الجغرافي -->
+        <!-- الموقع -->
         <a href="https://www.google.com/maps/@31.8556407,35.245475,7742m/data=!3m1!1e3?entry=ttu" target="_blank" class="grid-btn" data-goatcounter-click="location">
             <div class="icon-box map-theme"><i class="fa-solid fa-location-dot"></i></div>
             <div class="grid-content">
-                <span>الموقع الجغرافي</span>
+                <span>موقعنا</span>
                 <small>الرام وضواحيها</small>
             </div>
         </a>
