@@ -7,13 +7,10 @@
     <meta name="description" content="الباسم سات - محمد زربا (أبو باسم)، فني تركيب وصيانة كاميرات المراقبة والستلايت في الرام وضواحي القدس.">
     <meta name="theme-color" content="#030712">
 
-    <!-- Web App Manifest -->
-    <link rel="manifest" href="manifest.json">
-
     <!-- Open Graph -->
     <meta property="og:title" content="الباسم سات | محمد زربا (أبو باسم)">
     <meta property="og:description" content="فني تركيب وصيانة كاميرات المراقبة والستلايت - الرام وضواحي القدس">
-    <meta property="og:image" content="https://satalet.github.io/cart-abu-basem/poster.jpg?v=1789768630">
+    <meta property="og:image" content="https://satalet.github.io/cart-abu-basem/poster.jpg">
     <meta property="og:url" content="https://satalet.github.io/cart-abu-basem/">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ar_AR">
@@ -30,7 +27,7 @@
     <style>
         :root {
             --bg-base: #030712;
-            --card-surface: rgba(15, 23, 42, 0.88);
+            --card-surface: rgba(15, 23, 42, 0.85);
             --card-border: rgba(56, 189, 248, 0.22);
             --neon-blue: #38bdf8;
             --neon-green: #22c55e;
@@ -40,20 +37,12 @@
             --text-muted: #94a3b8;
         }
 
-        /* منع متصفح الفيسبوك من تكبير الخطوط التلقائي */
-        html {
-            -webkit-text-size-adjust: 100% !important;
-            text-size-adjust: 100% !important;
-        }
-
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
             font-family: 'Cairo', sans-serif;
             -webkit-tap-highlight-color: transparent;
-            -webkit-text-size-adjust: 100% !important;
-            text-size-adjust: 100% !important;
         }
 
         body {
@@ -62,23 +51,22 @@
                 radial-gradient(circle at 50% 0%, rgba(14, 165, 233, 0.22) 0%, transparent 55%),
                 radial-gradient(circle at 100% 100%, rgba(34, 197, 94, 0.08) 0%, transparent 45%);
             min-height: 100vh;
-            min-height: 100dvh;
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            padding: 10px 8px 24px;
+            padding: 16px 12px 32px;
             color: var(--text-primary);
         }
 
         .card-container {
             width: 100%;
-            max-width: 410px;
+            max-width: 420px;
             background: var(--card-surface);
             backdrop-filter: blur(24px);
             -webkit-backdrop-filter: blur(24px);
             border: 1px solid var(--card-border);
-            border-radius: 26px;
-            padding: 18px 14px;
+            border-radius: 28px;
+            padding: 24px 16px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(56, 189, 248, 0.08);
             position: relative;
             overflow: hidden;
@@ -89,16 +77,16 @@
             justify-content: space-between;
             align-items: center;
             width: 100%;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
 
         .status-badge {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 7px;
             padding: 5px 12px;
             border-radius: 999px;
-            font-size: 0.74rem;
+            font-size: 0.76rem;
             font-weight: 700;
             user-select: none;
             transition: all 0.3s ease;
@@ -117,8 +105,8 @@
         }
 
         .pulse-dot {
-            width: 7px;
-            height: 7px;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
             transition: background-color 0.3s ease;
         }
@@ -167,15 +155,9 @@
 
         .profile-img-container {
             position: relative;
-            width: 90px;
-            height: 90px;
-            margin-bottom: 10px;
-            cursor: pointer;
-            transition: transform 0.2s ease;
-        }
-
-        .profile-img-container:active {
-            transform: scale(0.94);
+            width: 96px;
+            height: 96px;
+            margin-bottom: 12px;
         }
 
         .profile-img {
@@ -194,35 +176,35 @@
             right: 2px;
             background: #0284c7;
             color: #fff;
-            width: 20px;
-            height: 20px;
+            width: 22px;
+            height: 22px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.65rem;
+            font-size: 0.68rem;
             border: 2px solid var(--bg-base);
         }
 
         h1 {
-            font-size: 1.35rem;
+            font-size: 1.4rem;
             font-weight: 800;
             color: #ffffff;
             line-height: 1.2;
         }
 
         .nickname {
-            font-size: 0.92rem;
+            font-size: 0.95rem;
             color: var(--neon-blue);
             font-weight: 700;
-            margin-top: 2px;
+            margin-top: 1px;
         }
 
         .subtitle {
-            font-size: 0.8rem;
+            font-size: 0.84rem;
             color: var(--text-secondary);
             font-weight: 600;
-            margin-top: 3px;
+            margin-top: 4px;
             line-height: 1.4;
         }
 
@@ -230,17 +212,17 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 9px;
             width: 100%;
             background: rgba(30, 41, 59, 0.9);
             border: 1px solid rgba(56, 189, 248, 0.4);
             color: #38bdf8;
             font-weight: 800;
-            font-size: 0.88rem;
+            font-size: 0.9rem;
             padding: 11px;
-            border-radius: 15px;
+            border-radius: 16px;
             cursor: pointer;
-            margin: 14px 0 9px;
+            margin: 16px 0 10px;
             transition: all 0.2s;
             box-shadow: 0 4px 15px rgba(56, 189, 248, 0.1);
         }
@@ -251,202 +233,195 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 9px;
+            gap: 10px;
             width: 100%;
             background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
             color: #ffffff;
             text-decoration: none;
             font-weight: 800;
-            font-size: 0.88rem;
-            padding: 11px 14px;
-            border-radius: 15px;
+            font-size: 0.92rem;
+            padding: 12px 16px;
+            border-radius: 16px;
             box-shadow: 0 4px 18px rgba(2, 132, 199, 0.35);
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             border: 1px solid rgba(255, 255, 255, 0.15);
             transition: transform 0.15s ease;
         }
 
         .btn-save-card:active { transform: scale(0.98); }
 
-        /* الكرت الرئيسي المحمي من التمدد */
-        .master-contact-card {
-            background: rgba(30, 41, 59, 0.85);
-            border: 1px solid rgba(56, 189, 248, 0.28);
-            border-radius: 16px;
-            padding: 11px 12px;
-            margin-bottom: 10px;
+        /* صندوق الخط الرئيسي المميز */
+        .main-line-box {
+            background: rgba(30, 41, 59, 0.75);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            border-radius: 18px;
+            padding: 12px 10px;
+            margin-bottom: 12px;
+            text-align: center;
         }
 
-        .master-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 9px;
-            gap: 6px;
-        }
-
-        .master-title {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            font-size: 0.76rem;
-            color: #94a3b8;
-            font-weight: 700;
-            white-space: nowrap;
-        }
-
-        .master-phone {
-            font-size: 0.95rem;
+        .main-line-header {
+            font-size: 0.88rem;
             font-weight: 800;
-            color: #38bdf8;
-            direction: ltr;
-            letter-spacing: 0.2px;
-            white-space: nowrap;
-        }
-
-        .master-actions {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-        }
-
-        .master-btn {
+            color: var(--neon-blue);
+            margin-bottom: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 6px;
-            padding: 9px;
-            border-radius: 11px;
+        }
+
+        .main-line-header i {
+            color: var(--neon-amber);
+            font-size: 0.82rem;
+        }
+
+        .main-line-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .main-action-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 9px 12px;
+            border-radius: 14px;
             text-decoration: none;
-            font-size: 0.84rem;
+            font-size: 0.88rem;
             font-weight: 800;
-            white-space: nowrap;
             transition: transform 0.15s ease;
         }
 
-        .master-btn:active { transform: scale(0.97); }
+        .main-action-btn:active { transform: scale(0.97); }
 
-        .btn-wa-master {
-            background: rgba(34, 197, 94, 0.15);
-            border: 1px solid rgba(34, 197, 94, 0.4);
+        .btn-call-primary {
+            background: rgba(56, 189, 248, 0.12);
+            border: 1px solid rgba(56, 189, 248, 0.35);
+            color: var(--neon-blue);
+        }
+
+        .btn-wa-primary {
+            background: rgba(34, 197, 94, 0.12);
+            border: 1px solid rgba(34, 197, 94, 0.35);
             color: #4ade80;
         }
 
-        .btn-call-master {
-            background: rgba(56, 189, 248, 0.15);
-            border: 1px solid rgba(56, 189, 248, 0.4);
-            color: #38bdf8;
-        }
-
-        /* شبكة الكروت الثانوية */
-        .contacts-grid {
+        /* شبكة الأزرار الثانوية */
+        .circle-buttons-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            margin-bottom: 12px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 14px;
         }
 
-        .grid-btn {
+        .circle-btn {
             display: flex;
             align-items: center;
-            gap: 7px;
+            justify-content: space-between;
             background: rgba(30, 41, 59, 0.75);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 8px 7px;
-            border-radius: 14px;
+            border: 1px solid rgba(56, 189, 248, 0.16);
+            padding: 9px 10px;
+            border-radius: 16px;
             text-decoration: none;
             color: var(--text-primary);
-            min-width: 0;
             transition: transform 0.15s ease;
+            min-width: 0;
         }
 
-        .grid-btn:active { transform: scale(0.97); }
+        .circle-btn:active { transform: scale(0.97); }
 
-        .icon-box {
-            width: 32px;
-            height: 32px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.95rem;
-            flex-shrink: 0;
-        }
-
-        .grid-content {
+        .btn-content {
             display: flex;
             flex-direction: column;
             text-align: right;
             overflow: hidden;
-            min-width: 0;
             flex-grow: 1;
         }
 
-        .grid-content span {
-            font-size: 0.76rem;
+        .btn-content span {
+            font-size: 0.8rem;
             font-weight: 700;
             color: #f8fafc;
             white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
         }
 
-        .grid-content small {
-            font-size: 0.67rem;
+        .btn-content small {
+            font-size: 0.69rem;
             color: var(--text-secondary);
             margin-top: 1px;
             direction: ltr;
             text-align: right;
             font-weight: 600;
             white-space: nowrap;
-            letter-spacing: -0.2px;
         }
 
-        .whatsapp-theme { background: rgba(34, 197, 94, 0.16); color: #22c55e; }
-        .jawwal-theme { background: rgba(56, 189, 248, 0.16); color: #38bdf8; }
-        .fb-theme { background: rgba(59, 130, 246, 0.16); color: #60a5fa; }
-        .map-theme { background: rgba(245, 158, 11, 0.16); color: #fbbf24; }
+        .icon-circle {
+            width: 36px;
+            height: 36px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.05rem;
+            flex-shrink: 0;
+            margin-left: 4px;
+        }
+
+        .whatsapp-glow { background: rgba(34, 197, 94, 0.16); color: #22c55e; }
+        .phone-glow { background: rgba(56, 189, 248, 0.16); color: #38bdf8; }
+        .fb-glow { background: rgba(59, 130, 246, 0.16); color: #60a5fa; }
+        .map-glow { background: rgba(245, 158, 11, 0.16); color: #fbbf24; }
 
         .btn-share-card {
             width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 7px;
+            gap: 8px;
             background: rgba(30, 41, 59, 0.45);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 9px;
-            border-radius: 13px;
+            padding: 10px;
+            border-radius: 14px;
             color: var(--text-muted);
-            font-size: 0.82rem;
+            font-size: 0.84rem;
             font-weight: 700;
             cursor: pointer;
         }
 
         .btn-share-card:active { transform: scale(0.98); color: var(--neon-blue); }
 
+        /* الفوتر المتوازن: دش ع اليمين، نص بالنص، قفل ع الشمال */
         .card-footer {
-            text-align: center;
-            margin-top: 12px;
-            font-size: 0.7rem;
+            margin-top: 14px;
+            font-size: 0.72rem;
             color: #64748b;
             font-weight: 600;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            gap: 7px;
+            padding: 0 4px;
         }
 
-        .secret-admin-lock {
-            background: transparent;
-            border: none;
-            color: var(--text-muted);
-            opacity: 0.15;
-            cursor: pointer;
-            font-size: 0.72rem;
-            padding: 4px;
-            outline: none;
+        .card-footer span {
+            text-align: center;
+            flex-grow: 1;
         }
+
+        .footer-hidden-link {
+            color: var(--text-muted);
+            opacity: 0.12;
+            text-decoration: none;
+            padding: 4px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.2s;
+        }
+
+        .footer-hidden-link:active { opacity: 0.5; }
 
         .modal-overlay {
             position: fixed;
@@ -454,51 +429,51 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(3, 7, 18, 0.88);
+            background: rgba(3, 7, 18, 0.85);
             backdrop-filter: blur(8px);
             display: none;
             justify-content: center;
             align-items: center;
             z-index: 1000;
-            padding: 14px;
+            padding: 16px;
         }
 
         .modal-box {
             background: #0f172a;
             border: 1px solid var(--card-border);
-            border-radius: 22px;
-            padding: 20px 16px;
+            border-radius: 24px;
+            padding: 22px 18px;
             width: 100%;
-            max-width: 350px;
+            max-width: 360px;
             text-align: center;
             box-shadow: 0 20px 40px rgba(0,0,0,0.9);
             position: relative;
         }
 
         .modal-box h3 {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             color: #fff;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .modal-close {
             position: absolute;
-            top: 12px;
-            left: 12px;
+            top: 14px;
+            left: 14px;
             background: transparent;
             border: none;
             color: var(--text-muted);
-            font-size: 1.15rem;
+            font-size: 1.2rem;
             cursor: pointer;
         }
 
         .qr-img {
-            width: 190px;
-            height: 190px;
-            margin: 6px auto;
-            border-radius: 12px;
+            width: 210px;
+            height: 210px;
+            margin: 8px auto;
+            border-radius: 14px;
             border: 2px solid var(--neon-blue);
-            padding: 5px;
+            padding: 6px;
             background: #fff;
         }
 
@@ -506,11 +481,11 @@
             width: 100%;
             background: #1e293b;
             border: 1px solid rgba(255, 255, 255, 0.12);
-            padding: 9px;
-            border-radius: 11px;
+            padding: 10px;
+            border-radius: 12px;
             color: #fff;
-            font-size: 0.85rem;
-            margin-bottom: 9px;
+            font-size: 0.88rem;
+            margin-bottom: 10px;
             outline: none;
         }
 
@@ -519,22 +494,35 @@
             background: #22c55e;
             color: #fff;
             border: none;
-            padding: 10px;
-            border-radius: 11px;
+            padding: 11px;
+            border-radius: 12px;
             font-weight: 800;
-            font-size: 0.88rem;
+            font-size: 0.92rem;
             cursor: pointer;
-            margin-top: 5px;
+            margin-top: 6px;
         }
 
-        .family-photo {
-            width: 100%;
-            max-height: 60vh;
-            object-fit: cover;
-            border-radius: 15px;
-            border: 1px solid rgba(56, 189, 248, 0.3);
-            margin-top: 6px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #0284c7;
+            color: #fff;
+            padding: 8px 18px;
+            border-radius: 999px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 2000;
+            pointer-events: none;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
         }
     </style>
 </head>
@@ -543,6 +531,7 @@
 
 <main class="card-container">
 
+    <!-- شريط الحالة وزر الباركود -->
     <div class="top-tools">
         <div class="status-badge online" id="statusBadge">
             <span class="pulse-dot"></span>
@@ -554,8 +543,9 @@
         </button>
     </div>
 
+    <!-- قسم البروفايل والصورة الشخصية -->
     <div class="profile-section">
-        <div class="profile-img-container" onclick="openModal('familyModal')" title="عرض الصورة">
+        <div class="profile-img-container">
             <img src="images/profile.png" alt="محمد زربا - أبو باسم" class="profile-img" onerror="this.src='profile.png'">
             <div class="verified-badge">
                 <i class="fa-solid fa-check"></i>
@@ -567,82 +557,92 @@
         <div class="subtitle">الباسم سات | خبير كاميرات المراقبة والستلايت</div>
     </div>
 
+    <!-- زر طلب الصيانة الفورية -->
     <button type="button" class="btn-dispatch" onclick="openModal('dispatchModal')">
         <i class="fa-solid fa-bolt"></i>
         <span>طلب صيانة / معاينة فورية</span>
     </button>
 
+    <!-- زر حفظ الكرت في الهاتف -->
     <a href="contact.vcf" download class="btn-save-card" data-goatcounter-click="save-contact">
         <i class="fa-solid fa-address-card"></i>
         <span>حفظ الكرت في الهاتف</span>
     </a>
 
-    <!-- الخط الرئيسي: سلكوم -->
-    <div class="master-contact-card">
-        <div class="master-header">
-            <span class="master-title">
-                <i class="fa-solid fa-star" style="color: #f59e0b; font-size: 0.72rem;"></i>
-                الخط الرئيسي (سلكوم)
-            </span>
-            <span class="master-phone">053-482-9927</span>
+    <!-- الخط الرئيسي المميز (سلكوم) -->
+    <div class="main-line-box">
+        <div class="main-line-header">
+            <i class="fa-solid fa-star"></i>
+            <span>الخط الرئيسي (سلكوم) 053-482-9927</span>
         </div>
-        <div class="master-actions">
-            <a href="https://wa.me/972534829927?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%B4%D8%A7%D9%87%D8%AA%20%D9%83%D8%B1%D8%AA%20%D8%A7%D9%84%D8%A8%D8%A7%D8%B3%D9%85%20%D8%B3%D8%A7%D8%AA%20%D9%88%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1." target="_blank" class="master-btn btn-wa-master" data-goatcounter-click="whatsapp-1">
-                <i class="fa-brands fa-whatsapp"></i>
-                <span>واتساب</span>
-            </a>
-            <a href="tel:+972534829927" class="master-btn btn-call-master" data-goatcounter-click="phone-1">
+        <div class="main-line-actions">
+            <a href="tel:+972534829927" class="main-action-btn btn-call-primary" data-goatcounter-click="main-call">
                 <i class="fa-solid fa-phone"></i>
                 <span>اتصال</span>
             </a>
+            <a href="https://wa.me/972534829927?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%B4%D8%A7%D9%87%D8%AF%D8%AA%20%D9%83%D8%B1%D8%AA%20%D8%A7%D9%84%D8%A8%D8%A7%D8%B3%D9%85%20%D8%B3%D8%A7%D8%AA%20%D9%88%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1." target="_blank" class="main-action-btn btn-wa-primary" data-goatcounter-click="main-wa">
+                <i class="fa-brands fa-whatsapp"></i>
+                <span>واتساب</span>
+            </a>
         </div>
     </div>
 
-    <!-- شبكة التواصل الإضافية -->
-    <div class="contacts-grid">
-        <a href="https://wa.me/972521234687?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%B4%D8%A7%D9%87%D8%AA%20%D9%83%D8%B1%D8%AA%20%D8%A7%D9%84%D8%A8%D8%A7%D8%B3%D9%85%20%D8%B3%D8%A7%D8%AA%20%D9%88%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1." target="_blank" class="grid-btn" data-goatcounter-click="whatsapp-2">
-            <div class="icon-box whatsapp-theme"><i class="fa-brands fa-whatsapp"></i></div>
-            <div class="grid-content">
-                <span>واتساب 2</span>
-                <small>052-123-4687</small>
-            </div>
-        </a>
-
-        <a href="tel:+972592973116" class="grid-btn" data-goatcounter-click="phone-2">
-            <div class="icon-box jawwal-theme"><i class="fa-solid fa-mobile-screen"></i></div>
-            <div class="grid-content">
+    <!-- شبكة أزرار التواصل -->
+    <div class="circle-buttons-grid">
+        
+        <!-- اتصال جوّال -->
+        <a href="tel:+972592973116" class="circle-btn" data-goatcounter-click="phone-2">
+            <div class="btn-content">
                 <span>اتصال جوّال</span>
                 <small>059-297-3116</small>
             </div>
+            <div class="icon-circle phone-glow"><i class="fa-solid fa-mobile-screen"></i></div>
         </a>
 
-        <a href="https://www.facebook.com/satalet/?locale=ar_AR" target="_blank" class="grid-btn" data-goatcounter-click="facebook">
-            <div class="icon-box fb-theme"><i class="fa-brands fa-facebook-f"></i></div>
-            <div class="grid-content">
-                <span>فيسبوك</span>
-                <small>الباسم سات</small>
+        <!-- واتساب 2 -->
+        <a href="https://wa.me/972521234687?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%B4%D8%A7%D9%87%D8%AF%D8%AA%20%D9%83%D8%B1%D8%AA%20%D8%A7%D9%84%D8%A8%D8%A7%D8%B3%D9%85%20%D8%B3%D8%A7%D8%AA%20%D9%88%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1." target="_blank" class="circle-btn" data-goatcounter-click="whatsapp-2">
+            <div class="btn-content">
+                <span>واتساب 2</span>
+                <small>052-123-4687</small>
             </div>
+            <div class="icon-circle whatsapp-glow"><i class="fa-brands fa-whatsapp"></i></div>
         </a>
 
-        <a href="https://www.google.com/maps/@31.8556407,35.245475,7742m/data=!3m1!1e3?entry=ttu" target="_blank" class="grid-btn" data-goatcounter-click="location">
-            <div class="icon-box map-theme"><i class="fa-solid fa-location-dot"></i></div>
-            <div class="grid-content">
+        <!-- الموقع الجغرافي -->
+        <a href="https://www.google.com/maps/@31.8556407,35.245475,7742m/data=!3m1!1e3?entry=ttu" target="_blank" class="circle-btn" data-goatcounter-click="location">
+            <div class="btn-content">
                 <span>موقعنا</span>
                 <small>الرام وضواحيها</small>
             </div>
+            <div class="icon-circle map-glow"><i class="fa-solid fa-location-dot"></i></div>
         </a>
+
+        <!-- صفحة الفيسبوك -->
+        <a href="https://www.facebook.com/satalet/?locale=ar_AR" target="_blank" class="circle-btn" data-goatcounter-click="facebook">
+            <div class="btn-content">
+                <span>فيسبوك</span>
+                <small>الباسم سات</small>
+            </div>
+            <div class="icon-circle fb-glow"><i class="fa-brands fa-facebook-f"></i></div>
+        </a>
+
     </div>
 
+    <!-- زر مشاركة الكرت -->
     <button type="button" class="btn-share-card" onclick="shareCard()">
         <i class="fa-solid fa-share-nodes"></i>
         <span>مشاركة الكرت</span>
     </button>
 
+    <!-- الفوتر مع رابط الدش الجديد المخفي على اليمين والقفل على الشمال -->
     <div class="card-footer">
+        <a href="https://satalet.github.io/albasem-cams/index.html" target="_blank" class="footer-hidden-link" title="كاميرات المراقبة">
+            <i class="fa-solid fa-satellite-dish" style="font-size: 0.75rem;"></i>
+        </a>
         <span>الباسم سات © جميع الحقوق محفوظة</span>
-        <button type="button" class="secret-admin-lock" onclick="accessAdminPanel()" title="لوحة الإدارة">
-            <i class="fa-solid fa-lock"></i>
-        </button>
+        <a href="stats.html" class="footer-hidden-link" title="لوحة الإدارة">
+            <i class="fa-solid fa-lock" style="font-size: 0.7rem;"></i>
+        </a>
     </div>
 
 </main>
@@ -653,11 +653,11 @@
         <button class="modal-close" onclick="closeModal('qrModal')"><i class="fa-solid fa-xmark"></i></button>
         <h3>امسح الكرت بهاتفك</h3>
         <img class="qr-img" src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https://satalet.github.io/cart-abu-basem/&color=0284c7" alt="QR Code">
-        <p style="font-size: 0.76rem; color: #94a3b8; margin-top: 8px;">وجّه كاميرا الهاتف نحو الباركود لفتح الكرت مباشرة</p>
+        <p style="font-size: 0.78rem; color: #94a3b8; margin-top: 8px;">وجّه كاميرا الهاتف نحو الباركود لفتح الكرت مباشرة</p>
     </div>
 </div>
 
-<!-- نافذة طلب الصيانة -->
+<!-- نافذة طلب الخدمة السريعة -->
 <div class="modal-overlay" id="dispatchModal" onclick="closeModalOnBg(event, 'dispatchModal')">
     <div class="modal-box">
         <button class="modal-close" onclick="closeModal('dispatchModal')"><i class="fa-solid fa-xmark"></i></button>
@@ -682,19 +682,9 @@
     </div>
 </div>
 
-<!-- نافذة عرض الصورة العائلية me.jpg -->
-<div class="modal-overlay" id="familyModal" onclick="closeModalOnBg(event, 'familyModal')">
-    <div class="modal-box" style="max-width: 360px; padding: 16px 12px;">
-        <button class="modal-close" onclick="closeModal('familyModal')"><i class="fa-solid fa-xmark"></i></button>
-        <h3 style="color: var(--neon-blue); font-size: 1rem; margin-bottom: 6px;">أبو باسم الغالي ❤️</h3>
-        <img class="family-photo" src="me.jpg" alt="محمد زربا (أبو باسم)" onerror="this.src='images/profile.png'">
-    </div>
-</div>
+<div class="toast" id="toastMsg">تم نسخ الرقم بنجاح 👍</div>
 
 <script>
-// إرجاع التمرير لأعلى الشاشة فوراً عند الفتح من متصفح الفيس
-window.scrollTo(0, 0);
-
 const WORKER_ENDPOINT = "https://albasem-stats.satalet.workers.dev";
 
 async function fetchLiveStatus() {
@@ -709,7 +699,7 @@ async function fetchLiveStatus() {
 
         if (data.status === 'busy') {
             badge.className = "status-badge busy";
-            text.innerText = "غير متاح حالياً • تواصل واتساب";
+            text.innerText = "في مهمة ميدانية • تواصل واتساب";
         } else {
             badge.className = "status-badge online";
             text.innerText = "متاح للخدمة والصيانة الآن";
@@ -728,15 +718,21 @@ document.addEventListener('visibilitychange', () => {
 
 function openModal(id) { document.getElementById(id).style.display = 'flex'; }
 function closeModal(id) { document.getElementById(id).style.display = 'none'; }
-function closeModalOnBg(e, id) { if (e.target.id === id) closeModal(id); }
+function closeModalOnBg(event, id) { if (event.target.id === id) closeModal(id); }
 
-function accessAdminPanel() {
-    const pin = prompt("أدخل الرقم السري للوحة الإدارة:");
-    if (pin === "1977") {
-        window.location.href = "stats.html";
-    } else if (pin !== null && pin.trim() !== "") {
-        alert("الرقم السري غير صحيح!");
-    }
+function copyText(val) {
+    navigator.clipboard.writeText(val).then(() => {
+        showToast("تم نسخ الرقم: " + val);
+    }).catch(() => {
+        prompt("انسخ الرقم:", val);
+    });
+}
+
+function showToast(msg) {
+    const t = document.getElementById('toastMsg');
+    t.innerText = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2200);
 }
 
 function sendWhatsAppDispatch() {
@@ -761,8 +757,7 @@ async function shareCard() {
     if (navigator.share) {
         try { await navigator.share(shareData); } catch (e) {}
     } else {
-        navigator.clipboard.writeText("https://satalet.github.io/cart-abu-basem/");
-        alert("تم نسخ رابط الكرت بنجاح!");
+        copyText("https://satalet.github.io/cart-abu-basem/");
     }
 }
 </script>
