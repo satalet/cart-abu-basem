@@ -10,10 +10,9 @@
     <!-- Open Graph -->
     <meta property="og:title" content="الباسم سات | محمد زربا (أبو باسم)">
     <meta property="og:description" content="فني تركيب وصيانة كاميرات المراقبة والستلايت - الرام وضواحي القدس">
-    <meta property="og:image" content="https://satalet.github.io/cart-abu-basem/poster.jpg">
+    <meta property="og:image" content="poster.jpg">
     <meta property="og:url" content="https://satalet.github.io/cart-abu-basem/">
     <meta property="og:type" content="website">
-    <meta property="og:locale" content="ar_AR">
 
     <!-- Fonts & Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -27,8 +26,10 @@
     <style>
         :root {
             --bg-base: #030712;
-            --card-surface: rgba(15, 23, 42, 0.85);
+            --card-surface: rgba(15, 23, 42, 0.92);
             --card-border: rgba(56, 189, 248, 0.22);
+            --gold: #d4af37;
+            --gold-glow: rgba(212, 175, 55, 0.4);
             --neon-blue: #38bdf8;
             --neon-green: #22c55e;
             --neon-amber: #f59e0b;
@@ -48,8 +49,8 @@
         body {
             background-color: var(--bg-base);
             background-image: 
-                radial-gradient(circle at 50% 0%, rgba(14, 165, 233, 0.22) 0%, transparent 55%),
-                radial-gradient(circle at 100% 100%, rgba(34, 197, 94, 0.08) 0%, transparent 45%);
+                radial-gradient(circle at 50% 0%, rgba(14, 165, 233, 0.18) 0%, transparent 55%),
+                radial-gradient(circle at 100% 100%, rgba(212, 175, 55, 0.08) 0%, transparent 45%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -66,41 +67,69 @@
             -webkit-backdrop-filter: blur(24px);
             border: 1px solid var(--card-border);
             border-radius: 28px;
-            padding: 24px 16px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(56, 189, 248, 0.08);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.85), 0 0 30px rgba(56, 189, 248, 0.1);
             position: relative;
             overflow: hidden;
         }
 
+        /* رأس الكرت مع صورة البوستر */
+        .header-cover {
+            position: relative;
+            width: 100%;
+            height: 125px;
+            background: #0f172a;
+            overflow: hidden;
+        }
+
+        .header-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 20%;
+            opacity: 0.55;
+            filter: contrast(1.1);
+        }
+
+        .header-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(3, 7, 18, 0.2) 0%, rgba(15, 23, 42, 0.95) 100%);
+        }
+
         .top-tools {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            right: 12px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            width: 100%;
-            margin-bottom: 14px;
+            z-index: 5;
         }
 
         .status-badge {
             display: inline-flex;
             align-items: center;
             gap: 7px;
-            padding: 5px 12px;
+            padding: 6px 14px;
             border-radius: 999px;
-            font-size: 0.76rem;
-            font-weight: 700;
+            font-size: 0.78rem;
+            font-weight: 800;
             user-select: none;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
             transition: all 0.3s ease;
         }
 
         .status-badge.online {
-            background: rgba(34, 197, 94, 0.12);
-            border: 1px solid rgba(34, 197, 94, 0.3);
+            background: rgba(34, 197, 94, 0.2);
+            border: 1px solid rgba(34, 197, 94, 0.5);
             color: #4ade80;
         }
 
         .status-badge.busy {
-            background: rgba(245, 158, 11, 0.15);
-            border: 1px solid rgba(245, 158, 11, 0.4);
+            background: rgba(245, 158, 11, 0.25);
+            border: 1px solid rgba(245, 158, 11, 0.6);
             color: #fbbf24;
         }
 
@@ -108,7 +137,6 @@
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            transition: background-color 0.3s ease;
         }
 
         .status-badge.online .pulse-dot {
@@ -119,45 +147,59 @@
 
         .status-badge.busy .pulse-dot {
             background-color: var(--neon-amber);
-            box-shadow: none;
             animation: none;
         }
 
         @keyframes pulse {
             0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
-            70% { box-shadow: 0 0 0 7px rgba(34, 197, 94, 0); }
+            70% { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
             100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
         }
 
+        /* زر الباركود المكبر السهل */
         .qr-toggle-btn {
-            background: rgba(30, 41, 59, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(15, 23, 42, 0.85);
+            border: 1.5px solid var(--neon-blue);
             color: var(--neon-blue);
-            width: 34px;
-            height: 34px;
-            border-radius: 10px;
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            font-size: 0.95rem;
+            font-size: 1.25rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6), 0 0 12px rgba(56, 189, 248, 0.3);
             transition: 0.2s;
         }
 
-        .qr-toggle-btn:active { transform: scale(0.92); }
+        .qr-toggle-btn:active {
+            transform: scale(0.92);
+            background: var(--neon-blue);
+            color: #010409;
+        }
+
+        /* محتوى الكرت */
+        .card-body {
+            padding: 0 16px 20px;
+        }
 
         .profile-section {
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
+            margin-top: -50px;
+            position: relative;
+            z-index: 4;
+            margin-bottom: 12px;
         }
 
         .profile-img-container {
             position: relative;
-            width: 96px;
-            height: 96px;
-            margin-bottom: 12px;
+            width: 98px;
+            height: 98px;
+            margin-bottom: 10px;
         }
 
         .profile-img {
@@ -165,8 +207,8 @@
             height: 100%;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid var(--neon-blue);
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.35);
+            border: 3px solid var(--gold);
+            box-shadow: 0 0 25px var(--gold-glow);
             background: #0f172a;
         }
 
@@ -174,106 +216,140 @@
             position: absolute;
             bottom: 2px;
             right: 2px;
-            background: #0284c7;
-            color: #fff;
-            width: 22px;
-            height: 22px;
+            background: var(--gold);
+            color: #010409;
+            width: 24px;
+            height: 24px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.68rem;
+            font-size: 0.72rem;
             border: 2px solid var(--bg-base);
         }
 
         h1 {
-            font-size: 1.4rem;
+            font-size: 1.45rem;
             font-weight: 800;
             color: #ffffff;
             line-height: 1.2;
         }
 
         .nickname {
-            font-size: 0.95rem;
-            color: var(--neon-blue);
-            font-weight: 700;
-            margin-top: 1px;
+            font-size: 1rem;
+            color: var(--gold);
+            font-weight: 800;
+            margin-top: 2px;
         }
 
         .subtitle {
-            font-size: 0.84rem;
-            color: var(--text-secondary);
-            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--neon-blue);
+            font-weight: 700;
             margin-top: 4px;
             line-height: 1.4;
         }
 
-        .btn-dispatch {
+        .tags-row {
             display: flex;
-            align-items: center;
             justify-content: center;
-            gap: 9px;
-            width: 100%;
-            background: rgba(30, 41, 59, 0.9);
-            border: 1px solid rgba(56, 189, 248, 0.4);
-            color: #38bdf8;
-            font-weight: 800;
-            font-size: 0.9rem;
-            padding: 11px;
-            border-radius: 16px;
-            cursor: pointer;
-            margin: 16px 0 10px;
-            transition: all 0.2s;
-            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.1);
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-top: 8px;
         }
 
-        .btn-dispatch:active { transform: scale(0.98); background: rgba(56, 189, 248, 0.15); }
+        .tag-badge {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 3px 9px;
+            border-radius: 8px;
+        }
+
+        .tag-badge.gold {
+            border-color: rgba(212, 175, 55, 0.4);
+            color: var(--gold);
+        }
+
+        /* صف أزرار الحفظ وطلب الخدمة */
+        .top-action-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 14px 0 12px;
+        }
 
         .btn-save-card {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            width: 100%;
-            background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
-            color: #ffffff;
+            gap: 8px;
+            background: linear-gradient(135deg, #d4af37 0%, #a17f18 100%);
+            color: #010409;
             text-decoration: none;
             font-weight: 800;
-            font-size: 0.92rem;
-            padding: 12px 16px;
+            font-size: 0.88rem;
+            padding: 11px 8px;
             border-radius: 16px;
-            box-shadow: 0 4px 18px rgba(2, 132, 199, 0.35);
-            margin-bottom: 14px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 4px 18px var(--gold-glow);
             transition: transform 0.15s ease;
         }
 
-        .btn-save-card:active { transform: scale(0.98); }
+        .btn-save-card:active { transform: scale(0.97); }
+
+        .btn-dispatch {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: rgba(14, 165, 233, 0.15);
+            border: 1.5px solid var(--neon-blue);
+            color: var(--neon-blue);
+            font-weight: 800;
+            font-size: 0.88rem;
+            padding: 11px 8px;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-dispatch:active { transform: scale(0.97); background: rgba(14, 165, 233, 0.3); }
 
         /* صندوق الخط الرئيسي المميز */
         .main-line-box {
             background: rgba(30, 41, 59, 0.75);
-            border: 1px solid rgba(56, 189, 248, 0.25);
+            border: 1px solid rgba(212, 175, 55, 0.4);
             border-radius: 18px;
             padding: 12px 10px;
             margin-bottom: 12px;
             text-align: center;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
         }
 
         .main-line-header {
             font-size: 0.88rem;
             font-weight: 800;
-            color: var(--neon-blue);
+            color: var(--gold);
             margin-bottom: 10px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 6px;
+            justify-content: space-between;
+            padding: 0 6px;
         }
 
-        .main-line-header i {
-            color: var(--neon-amber);
-            font-size: 0.82rem;
+        .copy-pill {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 8px;
+            font-size: 0.76rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
         .main-line-actions {
@@ -298,14 +374,14 @@
         .main-action-btn:active { transform: scale(0.97); }
 
         .btn-call-primary {
-            background: rgba(56, 189, 248, 0.12);
-            border: 1px solid rgba(56, 189, 248, 0.35);
+            background: rgba(56, 189, 248, 0.15);
+            border: 1px solid rgba(56, 189, 248, 0.4);
             color: var(--neon-blue);
         }
 
         .btn-wa-primary {
-            background: rgba(34, 197, 94, 0.12);
-            border: 1px solid rgba(34, 197, 94, 0.35);
+            background: rgba(34, 197, 94, 0.15);
+            border: 1px solid rgba(34, 197, 94, 0.4);
             color: #4ade80;
         }
 
@@ -342,15 +418,15 @@
         }
 
         .btn-content span {
-            font-size: 0.8rem;
+            font-size: 0.82rem;
             font-weight: 700;
             color: #f8fafc;
             white-space: nowrap;
         }
 
         .btn-content small {
-            font-size: 0.69rem;
-            color: var(--text-secondary);
+            font-size: 0.7rem;
+            color: var(--text-muted);
             margin-top: 1px;
             direction: ltr;
             text-align: right;
@@ -359,15 +435,15 @@
         }
 
         .icon-circle {
-            width: 36px;
-            height: 36px;
+            width: 38px;
+            height: 38px;
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             flex-shrink: 0;
-            margin-left: 4px;
+            margin-left: 6px;
         }
 
         .whatsapp-glow { background: rgba(34, 197, 94, 0.16); color: #22c55e; }
@@ -375,6 +451,60 @@
         .fb-glow { background: rgba(59, 130, 246, 0.16); color: #60a5fa; }
         .map-glow { background: rgba(245, 158, 11, 0.16); color: #fbbf24; }
 
+        /* قسم الخدمات المعتمدة (منسق ومرتب 100%) */
+        .services-box {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+
+        .services-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.82rem;
+            font-weight: 800;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        .services-title i { color: var(--gold); }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        .service-pill {
+            background: rgba(15, 23, 42, 0.85);
+            border: 1px solid rgba(56, 189, 248, 0.18);
+            padding: 9px 8px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #f1f5f9;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .service-pill i {
+            color: var(--neon-blue);
+            font-size: 0.85rem;
+        }
+
+        .service-pill:active {
+            transform: scale(0.97);
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        /* زر مشاركة الكرت */
         .btn-share-card {
             width: 100%;
             display: flex;
@@ -393,7 +523,7 @@
 
         .btn-share-card:active { transform: scale(0.98); color: var(--neon-blue); }
 
-        /* الفوتر المتوازن: دش ع اليمين، نص بالنص، قفل ع الشمال */
+        /* الفوتر المتوازن المستقل تماماً */
         .card-footer {
             margin-top: 14px;
             font-size: 0.72rem;
@@ -403,6 +533,8 @@
             justify-content: space-between;
             align-items: center;
             padding: 0 4px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 10px;
         }
 
         .card-footer span {
@@ -412,17 +544,20 @@
 
         .footer-hidden-link {
             color: var(--text-muted);
-            opacity: 0.12;
+            opacity: 0.25;
             text-decoration: none;
-            padding: 4px;
+            padding: 6px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            cursor: pointer;
             transition: opacity 0.2s;
         }
 
-        .footer-hidden-link:active { opacity: 0.5; }
+        .footer-hidden-link:hover,
+        .footer-hidden-link:active { opacity: 0.85; color: var(--gold); }
 
+        /* النوافذ المنبثقة */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -531,118 +666,162 @@
 
 <main class="card-container">
 
-    <!-- شريط الحالة وزر الباركود -->
-    <div class="top-tools">
-        <div class="status-badge online" id="statusBadge">
-            <span class="pulse-dot"></span>
-            <span id="statusText">متاح للخدمة والصيانة الآن</span>
+    <!-- الهيدر مع صورة البوستر المدمجة -->
+    <div class="header-cover">
+        <img src="poster.jpg" alt="الباسم سات">
+        <div class="header-overlay"></div>
+
+        <!-- شريط الحالة + زر الباركود الكبير المريح -->
+        <div class="top-tools">
+            <div class="status-badge online" id="statusBadge">
+                <span class="pulse-dot"></span>
+                <span id="statusText">متاح للخدمة والصيانة الآن</span>
+            </div>
+
+            <button type="button" class="qr-toggle-btn" onclick="openModal('qrModal')" title="عرض QR Code">
+                <i class="fa-solid fa-qrcode"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="card-body">
+
+        <!-- البروفايل والمعلومات -->
+        <div class="profile-section">
+            <div class="profile-img-container">
+                <img src="images/profile.png" alt="محمد زربا - أبو باسم" class="profile-img" onerror="this.src='profile.png'">
+                <div class="verified-badge">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+            </div>
+
+            <h1>محمد زربا</h1>
+            <div class="nickname">(أبو باسم)</div>
+            <div class="subtitle">الباسم سات | خبير كاميرات المراقبة والستلايت</div>
+
+            <div class="tags-row">
+                <span class="tag-badge gold"><i class="fa-solid fa-location-dot"></i> الرام وضواحي القدس</span>
+                <span class="tag-badge">4K ULTRA HD</span>
+                <span class="tag-badge">HIKVISION</span>
+                <span class="tag-badge">Dahua</span>
+            </div>
         </div>
 
-        <button type="button" class="qr-toggle-btn" onclick="openModal('qrModal')" title="عرض QR Code">
-            <i class="fa-solid fa-qrcode"></i>
+        <!-- صف الأزرار العلوية: حفظ الكرت + طلب الخدمة -->
+        <div class="top-action-grid">
+            <a href="contact.vcf" download class="btn-save-card" data-goatcounter-click="save-contact">
+                <i class="fa-solid fa-address-card"></i>
+                <span>حفظ الكرت بالهاتف</span>
+            </a>
+
+            <button type="button" class="btn-dispatch" onclick="openModal('dispatchModal')">
+                <i class="fa-solid fa-bolt"></i>
+                <span>طلب صيانة فورية</span>
+            </button>
+        </div>
+
+        <!-- الخط الرئيسي المميز (سلكوم) -->
+        <div class="main-line-box">
+            <div class="main-line-header">
+                <span><i class="fa-solid fa-crown"></i> الخط الرئيسي (سلكوم)</span>
+                <span class="copy-pill" onclick="copyText('0534829927')">053-482-9927 <i class="fa-regular fa-copy"></i></span>
+            </div>
+            <div class="main-line-actions">
+                <a href="tel:+972534829927" class="main-action-btn btn-call-primary" data-goatcounter-click="main-call">
+                    <i class="fa-solid fa-phone"></i>
+                    <span>اتصال مباشر</span>
+                </a>
+                <a href="https://wa.me/972534829927?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%B4%D8%A7%D9%87%D8%AA%20%D9%83%D8%B1%D8%AA%20%D8%A7%D9%84%D8%A8%D8%A7%D8%B3%D9%85%20%D8%B3%D8%A7%D8%AA%20%D9%88%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1." target="_blank" class="main-action-btn btn-wa-primary" data-goatcounter-click="main-wa">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <span>مراسلة واتساب</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- شبكة أزرار التواصل -->
+        <div class="circle-buttons-grid">
+            
+            <!-- اتصال جوّال -->
+            <a href="tel:+972592973116" class="circle-btn" data-goatcounter-click="phone-2">
+                <div class="btn-content">
+                    <span>اتصال جوّال</span>
+                    <small>059-297-3116</small>
+                </div>
+                <div class="icon-circle phone-glow"><i class="fa-solid fa-mobile-screen"></i></div>
+            </a>
+
+            <!-- واتساب 2 -->
+            <a href="https://wa.me/972521234687?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%B4%D8%A7%D9%87%D8%AA%20%D9%83%D8%B1%D8%AA%20%D8%A7%D9%84%D8%A8%D8%A7%D8%B3%D9%85%20%D8%B3%D8%A7%D8%AA%20%D9%88%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1." target="_blank" class="circle-btn" data-goatcounter-click="whatsapp-2">
+                <div class="btn-content">
+                    <span>واتساب 2</span>
+                    <small>052-123-4687</small>
+                </div>
+                <div class="icon-circle whatsapp-glow"><i class="fa-brands fa-whatsapp"></i></div>
+            </a>
+
+            <!-- الموقع الجغرافي -->
+            <a href="https://www.google.com/maps/@31.8556407,35.245475,7742m/data=!3m1!1e3?entry=ttu" target="_blank" class="circle-btn" data-goatcounter-click="location">
+                <div class="btn-content">
+                    <span>موقعنا</span>
+                    <small>الرام وضواحيها</small>
+                </div>
+                <div class="icon-circle map-glow"><i class="fa-solid fa-location-dot"></i></div>
+            </a>
+
+            <!-- صفحة الفيسبوك -->
+            <a href="https://www.facebook.com/satalet/?locale=ar_AR" target="_blank" class="circle-btn" data-goatcounter-click="facebook">
+                <div class="btn-content">
+                    <span>فيسبوك</span>
+                    <small>الباسم سات</small>
+                </div>
+                <div class="icon-circle fb-glow"><i class="fa-brands fa-facebook-f"></i></div>
+            </a>
+
+        </div>
+
+        <!-- صندوق الخدمات المعتمدة المنظم -->
+        <div class="services-box">
+            <div class="services-title">
+                <span><i class="fa-solid fa-wrench"></i> خدماتنا المعتمدة (اضغط للطلب)</span>
+                <span style="font-size:0.7rem; color:var(--text-muted);">دقة وسرعة</span>
+            </div>
+            <div class="services-grid">
+                <div class="service-pill" onclick="quickSelectService('تركيب / صيانة كاميرات مراقبة')">
+                    <i class="fa-solid fa-video"></i>
+                    <span>كاميرات مراقبة</span>
+                </div>
+                <div class="service-pill" onclick="quickSelectService('صيانة ستلايت وإشارة دش')">
+                    <i class="fa-solid fa-satellite-dish"></i>
+                    <span>تركيب وضبط ستلايت</span>
+                </div>
+                <div class="service-pill" onclick="quickSelectService('برمجة الأنظمة وضبطها')">
+                    <i class="fa-solid fa-sliders"></i>
+                    <span>برمجة الأنظمة</span>
+                </div>
+                <div class="service-pill" onclick="quickSelectService('أجهزة إنذار وحماية البيت')">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span>إنذار وحماية البيت</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- زر مشاركة الكرت -->
+        <button type="button" class="btn-share-card" onclick="shareCard()">
+            <i class="fa-solid fa-share-nodes"></i>
+            <span>مشاركة الكرت</span>
         </button>
-    </div>
 
-    <!-- قسم البروفايل والصورة الشخصية -->
-    <div class="profile-section">
-        <div class="profile-img-container">
-            <img src="images/profile.png" alt="محمد زربا - أبو باسم" class="profile-img" onerror="this.src='profile.png'">
-            <div class="verified-badge">
-                <i class="fa-solid fa-check"></i>
-            </div>
-        </div>
-
-        <h1>محمد زربا</h1>
-        <div class="nickname">(أبو باسم)</div>
-        <div class="subtitle">الباسم سات | خبير كاميرات المراقبة والستلايت</div>
-    </div>
-
-    <!-- زر طلب الصيانة الفورية -->
-    <button type="button" class="btn-dispatch" onclick="openModal('dispatchModal')">
-        <i class="fa-solid fa-bolt"></i>
-        <span>طلب صيانة / معاينة فورية</span>
-    </button>
-
-    <!-- زر حفظ الكرت في الهاتف -->
-    <a href="contact.vcf" download class="btn-save-card" data-goatcounter-click="save-contact">
-        <i class="fa-solid fa-address-card"></i>
-        <span>حفظ الكرت في الهاتف</span>
-    </a>
-
-    <!-- الخط الرئيسي المميز (سلكوم) -->
-    <div class="main-line-box">
-        <div class="main-line-header">
-            <i class="fa-solid fa-star"></i>
-            <span>الخط الرئيسي (سلكوم) 053-482-9927</span>
-        </div>
-        <div class="main-line-actions">
-            <a href="tel:+972534829927" class="main-action-btn btn-call-primary" data-goatcounter-click="main-call">
-                <i class="fa-solid fa-phone"></i>
-                <span>اتصال</span>
+        <!-- الفوتر المتوازن المستقل مع الباسورد على القفل -->
+        <div class="card-footer">
+            <a href="https://satalet.github.io/albasem-cams/index.html" target="_blank" class="footer-hidden-link" title="كاميرات المراقبة">
+                <i class="fa-solid fa-satellite-dish"></i>
             </a>
-            <a href="https://wa.me/972534829927?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%B4%D8%A7%D9%87%D8%AF%D8%AA%20%D9%83%D8%B1%D8%AA%20%D8%A7%D9%84%D8%A8%D8%A7%D8%B3%D9%85%20%D8%B3%D8%A7%D8%AA%20%D9%88%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1." target="_blank" class="main-action-btn btn-wa-primary" data-goatcounter-click="main-wa">
-                <i class="fa-brands fa-whatsapp"></i>
-                <span>واتساب</span>
-            </a>
+            <span>الباسم سات © جميع الحقوق محفوظة</span>
+            <span class="footer-hidden-link" onclick="openAdminSecure()" title="لوحة الإدارة">
+                <i class="fa-solid fa-lock"></i>
+            </span>
         </div>
-    </div>
 
-    <!-- شبكة أزرار التواصل -->
-    <div class="circle-buttons-grid">
-        
-        <!-- اتصال جوّال -->
-        <a href="tel:+972592973116" class="circle-btn" data-goatcounter-click="phone-2">
-            <div class="btn-content">
-                <span>اتصال جوّال</span>
-                <small>059-297-3116</small>
-            </div>
-            <div class="icon-circle phone-glow"><i class="fa-solid fa-mobile-screen"></i></div>
-        </a>
-
-        <!-- واتساب 2 -->
-        <a href="https://wa.me/972521234687?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%B4%D8%A7%D9%87%D8%AF%D8%AA%20%D9%83%D8%B1%D8%AA%20%D8%A7%D9%84%D8%A8%D8%A7%D8%B3%D9%85%20%D8%B3%D8%A7%D8%AA%20%D9%88%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1." target="_blank" class="circle-btn" data-goatcounter-click="whatsapp-2">
-            <div class="btn-content">
-                <span>واتساب 2</span>
-                <small>052-123-4687</small>
-            </div>
-            <div class="icon-circle whatsapp-glow"><i class="fa-brands fa-whatsapp"></i></div>
-        </a>
-
-        <!-- الموقع الجغرافي -->
-        <a href="https://www.google.com/maps/@31.8556407,35.245475,7742m/data=!3m1!1e3?entry=ttu" target="_blank" class="circle-btn" data-goatcounter-click="location">
-            <div class="btn-content">
-                <span>موقعنا</span>
-                <small>الرام وضواحيها</small>
-            </div>
-            <div class="icon-circle map-glow"><i class="fa-solid fa-location-dot"></i></div>
-        </a>
-
-        <!-- صفحة الفيسبوك -->
-        <a href="https://www.facebook.com/satalet/?locale=ar_AR" target="_blank" class="circle-btn" data-goatcounter-click="facebook">
-            <div class="btn-content">
-                <span>فيسبوك</span>
-                <small>الباسم سات</small>
-            </div>
-            <div class="icon-circle fb-glow"><i class="fa-brands fa-facebook-f"></i></div>
-        </a>
-
-    </div>
-
-    <!-- زر مشاركة الكرت -->
-    <button type="button" class="btn-share-card" onclick="shareCard()">
-        <i class="fa-solid fa-share-nodes"></i>
-        <span>مشاركة الكرت</span>
-    </button>
-
-    <!-- الفوتر مع رابط الدش الجديد المخفي على اليمين والقفل على الشمال -->
-    <div class="card-footer">
-        <a href="https://satalet.github.io/albasem-cams/index.html" target="_blank" class="footer-hidden-link" title="كاميرات المراقبة">
-            <i class="fa-solid fa-satellite-dish" style="font-size: 0.75rem;"></i>
-        </a>
-        <span>الباسم سات © جميع الحقوق محفوظة</span>
-        <a href="stats.html" class="footer-hidden-link" title="لوحة الإدارة">
-            <i class="fa-solid fa-lock" style="font-size: 0.7rem;"></i>
-        </a>
     </div>
 
 </main>
@@ -661,12 +840,13 @@
 <div class="modal-overlay" id="dispatchModal" onclick="closeModalOnBg(event, 'dispatchModal')">
     <div class="modal-box">
         <button class="modal-close" onclick="closeModal('dispatchModal')"><i class="fa-solid fa-xmark"></i></button>
-        <h3>طلب خدمة سريعة</h3>
+        <h3>⚡ طلب خدمة سريعة</h3>
         <select class="dispatch-select" id="serviceSelect">
             <option value="تركيب / صيانة كاميرات مراقبة">تركيب / صيانة كاميرات مراقبة</option>
             <option value="صيانة ستلايت وإشارة دش">صيانة ستلايت وإشارة دش</option>
             <option value="تركيب ستلايت مركزي">تركيب ستلايت مركزي</option>
-            <option value="أنظمة إنتركم وأجهزة إنذار">أنظمة إنتركم وأجهزة إنذار</option>
+            <option value="برمجة الأنظمة وضبطها">برمجة الأنظمة وضبطها</option>
+            <option value="أجهزة إنذار وحماية البيت">أجهزة إنذار وحماية البيت</option>
             <option value="استفسار عام آخر">استفسار عام آخر</option>
         </select>
         <select class="dispatch-select" id="areaSelect">
@@ -682,7 +862,7 @@
     </div>
 </div>
 
-<div class="toast" id="toastMsg">تم نسخ الرقم بنجاح 👍</div>
+<div class="toast" id="toastMsg">تم بنجاح 👍</div>
 
 <script>
 const WORKER_ENDPOINT = "https://albasem-stats.satalet.workers.dev";
@@ -692,9 +872,7 @@ async function fetchLiveStatus() {
     const text = document.getElementById('statusText');
 
     try {
-        const res = await fetch(`${WORKER_ENDPOINT}?_t=${Date.now()}`, {
-            cache: 'no-store'
-        });
+        const res = await fetch(`${WORKER_ENDPOINT}?_t=${Date.now()}`, { cache: 'no-store' });
         const data = await res.json();
 
         if (data.status === 'busy') {
@@ -711,9 +889,7 @@ fetchLiveStatus();
 setInterval(fetchLiveStatus, 4000);
 
 document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'visible') {
-        fetchLiveStatus();
-    }
+    if (document.visibilityState === 'visible') fetchLiveStatus();
 });
 
 function openModal(id) { document.getElementById(id).style.display = 'flex'; }
@@ -735,12 +911,26 @@ function showToast(msg) {
     setTimeout(() => t.classList.remove('show'), 2200);
 }
 
+function quickSelectService(srv) {
+    document.getElementById('serviceSelect').value = srv;
+    openModal('dispatchModal');
+}
+
 function sendWhatsAppDispatch() {
     const service = document.getElementById('serviceSelect').value;
     const area = document.getElementById('areaSelect').value;
-    const msg = encodeURIComponent(`مرحبا أبو باسم، محتاج خدمة: (${service}) في منطقة: (${area}). يرجى التواصل لتحديد الموعد والتفاصيل.`);
+    const msg = encodeURIComponent(`مرحبا أبو باسم، محتاج خدمة: (${service}) في منطقة: (${area}). يرجى التواصل لتحديد الموعد.`);
     window.open(`https://wa.me/972534829927?text=${msg}`, '_blank');
     closeModal('dispatchModal');
+}
+
+function openAdminSecure() {
+    const pwd = prompt("🔒 أدخل كلمة المرور للدخول إلى لوحة الإحصائيات:");
+    if (pwd === "1977") {
+        window.location.href = "stats.html";
+    } else if (pwd !== null) {
+        showToast("كلمة المرور غير صحيحة ❌");
+    }
 }
 
 async function shareCard() {
@@ -751,13 +941,13 @@ async function shareCard() {
     const shareData = {
         title: "الباسم سات | محمد زربا (أبو باسم)",
         text: "الباسم سات - تركيب وصيانة كاميرات المراقبة والستلايت | الرام وضواحي القدس",
-        url: "https://satalet.github.io/cart-abu-basem/"
+        url: window.location.href
     };
 
     if (navigator.share) {
         try { await navigator.share(shareData); } catch (e) {}
     } else {
-        copyText("https://satalet.github.io/cart-abu-basem/");
+        copyText(window.location.href);
     }
 }
 </script>
